@@ -47,6 +47,7 @@ class VideoController extends AdminController
             'detail' => 'required',
             'tag' => 'required',
             'url' => 'required',
+            'time'=> 'required'
         ]);
         //  return $request;die;
         if (!empty($request->price)){
@@ -60,7 +61,8 @@ class VideoController extends AdminController
             'tag' => implode($request->tag,','),
             'url'=> $videoUrl,
             'price'=>$price,
-            'course_id'=>$request->course
+            'course_id'=>$request->course,
+            'time' => $request->time
         ]);
 
         return back()->with('msg','ویدیو مورد نظر با موفقیت افزوده شد ');
@@ -83,9 +85,9 @@ class VideoController extends AdminController
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Video $video)
     {
-        return view('admin.course.edit',compact('course'));
+        return view('admin.video.edit',compact('video'));
     }
 
     /**
@@ -95,46 +97,49 @@ class VideoController extends AdminController
      * @param  \App\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Video $video)
     {
-        if ($request->title == $course->title){
+        if ($request->title == $video->title){
             $request->validate([
                 'title' => 'required',
                 'summery' => 'required',
                 'detail' => 'required',
-                'price' => 'required'
+                'price' => 'required',
+                'time' => 'required',
             ]);
-            $title = $course->title;
+            $title = $video->title;
         }else{
             $request->validate([
                 'title' => 'required|unique:articles',
                 'summery' => 'required',
                 'detail' => 'required',
-                'price' => 'required'
+                'price' => 'required',
+                'time' => 'required'
+
             ]);
             $title = $request->title;
         }
-        if ($request->image != ""){
-            $imgUrl = $this->imageuploader($request->image);
+        if ($request->url != ""){
+            $videoUrl = $this->imageuploader($request->url);
         }else{
-            $imgUrl = $course->image;
+            $videoUrl = $video->url;
         }
         if ($request->tag){
             $tag = implode($request->tag,',');
         }else{
-            $tag = $course->tag;
+            $tag = $video->tag;
         }
-        $course->update([
+        $video->update([
             'title' => $title,
-            'cat_id' => $request->cat_id,
             'summery' => $request->summery,
             'detail' => $request->detail,
             'tag' => $tag,
-            'image'=> $imgUrl,
-            'price'=> $request->price
+            'url'=> $videoUrl,
+            'price'=> $request->price,
+            'time'=> $request->time
         ]);
-
-        return redirect(route('course.index'))->with('msg','دوره مورد نظرتان با موفقیت ویرایش شده است ');
+        $courseTitle = Course::where('id',$video->course_id)->get()->first();
+        return redirect(route('video.index',['courseTitle'=>$courseTitle->title]))->with('msg','ویدیو مورد نظرتان با موفقیت ویرایش شده است ');
 
     }
 

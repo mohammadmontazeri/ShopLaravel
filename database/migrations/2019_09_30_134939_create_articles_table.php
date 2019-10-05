@@ -21,8 +21,8 @@ class CreateArticlesTable extends Migration
             $table->text('detail');
             $table->string('image');
             $table->unsignedBigInteger('cat_id');
-            $table->string('viewed',20);
-            $table->string('like',20);
+            $table->string('viewed',20)->default(0);
+            $table->string('like',20)->default(0);
             $table->enum('status',['0','1'])->default(0);
             $table->timestamps();
         });

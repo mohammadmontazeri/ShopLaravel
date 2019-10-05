@@ -33,6 +33,10 @@
                         <input type="text" class="form-control" name="price"   placeholder=" مبلغ هزینه را وارد کنید">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">مدت زمان این ویدیو</label>
+                        <input type="text" class="form-control" name="time"   placeholder=" زمان را وارد کنید">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">خلاصه متن</label>
                         <input type="text" class="form-control" name="summery" placeholder="خلاصه متن را وارد کنید">
                     </div>

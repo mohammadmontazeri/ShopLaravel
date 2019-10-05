@@ -33,7 +33,7 @@
                             <tr>
                                 <td><?php echo $video['id']; ?></td>
                                 <td><?php echo $video['title']; ?></td>
-                                <td><?php echo $video->time ;?></td>
+                                <td class="border-bottom"><?php echo $video->time ;?></td>
                                 <td>
                                     <?php
                                     $v = new Verta($video->created_at);

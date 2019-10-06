@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Article;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ArticleController extends AdminController
 {
@@ -108,6 +109,9 @@ class ArticleController extends AdminController
             $title = $request->title;
         }
         if ($request->image != ""){
+            if (file_exists("public$article->image")){
+                unlink("public$article->image");
+            }
             $imgUrl = $this->imageuploader($request->image);
         }else{
             $imgUrl = $article->image;
@@ -138,6 +142,9 @@ class ArticleController extends AdminController
      */
     public function destroy(Article $article)
     {
+        if (file_exists("public$article->image")) {
+            unlink("public$article->image");
+        }
         $article->delete();
         return redirect(route('article.index'))->with('msg','مقاله مورد نظرتان با موفقیت حذف شده است ');
     }
@@ -150,7 +157,7 @@ class ArticleController extends AdminController
             $extension = $request->file('upload')->getClientOriginalExtension();
 
             $filenametostore = $filename.'_'.time().'.'.$extension;
-
+            Session::put('upload',$filenametostore);
             $request->file('upload')->move(public_path('/uploads/'),$filenametostore);
             $CKEditorFuncNum = $request->input('CKEditorFuncNum');
             $url = asset("public/uploads/".$filenametostore);

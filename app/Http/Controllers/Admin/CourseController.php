@@ -113,6 +113,9 @@ class CourseController extends AdminController
             $title = $request->title;
         }
         if ($request->image != ""){
+            if (file_exists("public$course->image")){
+                unlink("public$course->image");
+            }
             $imgUrl = $this->imageuploader($request->image);
         }else{
             $imgUrl = $course->image;
@@ -144,6 +147,9 @@ class CourseController extends AdminController
      */
     public function destroy(Course $course)
     {
+        if (file_exists("public$course->image")) {
+            unlink("public$course->image");
+        }
         $course->delete();
         return back()->with('msg','دوره مورد نظرتان با موفقیت حذف شد');
     }

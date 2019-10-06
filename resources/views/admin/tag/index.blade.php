@@ -42,11 +42,7 @@
                                 <a class="label label-primary" href="{{url(route('tag.edit',['tag'=>$tag]))}}">ویرایش</a>
                             </td>
                             <td>
-                                <form method="post" action="{{route('tag.destroy',['tag'=>$tag->id])}}">
-                                    {{csrf_field()}}
-                                    {{method_field('delete')}}
-                                    <button class="btn btn-danger">حذف</button>
-                                </form>
+                                <button data-test="{{$tag->id}}" data-content="tag" class="btn btn-danger delete">حذف</button>
                             </td>
                         </tr>
 

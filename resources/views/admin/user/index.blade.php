@@ -60,11 +60,7 @@
                                     </td>
                                     <td>
                                         @if($user->role != "admin")
-                                            <form method="post" action="{{route('user.destroy',['user'=>$user])}}">
-                                                {{csrf_field()}}
-                                                {{method_field('delete')}}
-                                                <button class="btn btn-danger">حذف</button>
-                                            </form>
+                                            <button data-test="{{$user->id}}" data-content="user" class="btn btn-danger delete">حذف</button>
                                         @endif
                                     </td>
                                 </tr>

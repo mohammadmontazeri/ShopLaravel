@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    \Illuminate\Support\Facades\Auth::loginUsingId(1);
-});
+Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');
 
 //Auth::routes();
 Route::prefix('admin')->group(function (){

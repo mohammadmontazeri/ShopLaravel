@@ -96,6 +96,9 @@ class CategoryController extends AdminController
         if ($request->image == ""){
             $url = $category->image;
         }else{
+            if (file_exists("public$category->image")){
+                unlink("public$category->image");
+            }
             $url = $this->imageuploader($request->image);
         }
 
@@ -115,6 +118,9 @@ class CategoryController extends AdminController
      */
     public function destroy(Category $category)
     {
+        if (file_exists("public$category->image")){
+            unlink("public$category->image");
+        }
         $category->delete();
         return back()->with('msg','دسته مورد شما با موفقیت حذف شد');
     }

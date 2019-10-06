@@ -7,6 +7,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="UTF-8">
     <title>پنل مدیریت</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.4 -->
@@ -159,7 +160,7 @@ desired effect
                         <a href="{{url(route('course.index'))}}"><i class="fa fa-circle"></i> <span>دوره های ویدیویی</span></a>
                     </li>
                     <li>
-                        <a href="{{url(route('comment.index'))}}"><i class="fa fa-circle"></i> <span>کامنت ها</span></a>
+                        <a href="#"><i class="fa fa-circle"></i> <span>کامنت ها</span></a>
                     </li>
                     <li>
                         <a href="{{url(route('logout'))}}" style="color: #f94877"><i class="fa fa-square"></i> <span>خروج</span></a>
@@ -241,11 +242,117 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{asset('public/dist/js/app.min.js')}}"></script>
 <script src="{{ asset("public/ckeditor/ckeditor.js") }}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
 <script>
+
     CKEDITOR.replace( 'editor1', {
         filebrowserUploadUrl: "{{route('upload-editor', ['_token' => csrf_token() ])}}",
         filebrowserUploadMethod: 'form'
     });
+///////////////////////////////////////////////////////////////////////////////////////
+    $(document).ready(function () {
+        $('.delete').on('click', function (e) {
+            e.preventDefault();
+            let delete_id = $(this).attr('data-test');
+            let delete_type = $(this).attr('data-content');
+            let token   = $('meta[name="csrf-token"]').attr('content');
+            swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url     : "{{route('ajax')}}",
+                            method  : 'POST',
+                            data    : {
+                                delete_id  :delete_id,
+                                delete_type : delete_type,
+                            },
+                            headers:
+                                {
+                                    'X-CSRF-TOKEN': token
+                                },
+                            success: function () {
+                                setTimeout(function () { location.reload(1); }, 1000);
+                                swal("Done!","It was succesfully deleted!","success");
+                            }
+                        });
+                    } else {
+                        swal("Your imaginary file is safe!");
+                    }
+                });
+            function ajax() {
+
+            }
+           /* Swal({
+                    title: "Are you sure?",
+                    text: "You will not be able to recover this imaginary file!",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    confirmButtonText: "Yes, delete it!",
+                    closeOnConfirm: false
+                },
+                function(isConfirm){
+                    if (isConfirm) {
+                        $.ajax({
+                            url     : "#",
+                            method  : 'POST',
+                            data    : {
+                                delete_id  :delete_id,
+                                delete_type : delete_type,
+                            },
+                            headers:
+                                {
+                                    'X-CSRF-TOKEN': token
+                                },
+                            success: function () {
+                                swal("Done!","It was succesfully deleted!","success");
+                            }
+                        });
+                    }else{
+                        Swal("Cancelled", "Your imaginary file is safe :)", "error");
+                    }
+                })*/
+
+           /* Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url     : "#",
+                        method  : 'POST',
+                        data    : {
+                            delete_id  :delete_id,
+                            delete_type : delete_type,
+                        },
+                        headers:
+                            {
+                                'X-CSRF-TOKEN': token
+                            },
+                        success : function(){
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+
+                        }
+                    });
+                }*/
+            });
+    })
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

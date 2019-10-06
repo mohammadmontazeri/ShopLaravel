@@ -51,11 +51,8 @@
                                     <a class="label label-primary" href="{{url(route('course.edit',['course'=>$course]))}}">ویرایش</a>
                                 </td>
                                 <td>
-                                    <form method="post" action="{{route('course.destroy',['course'=>$course->id])}}">
-                                        {{csrf_field()}}
-                                        {{method_field('delete')}}
-                                        <button class="btn btn-danger">حذف</button>
-                                    </form>
+                                    <button data-test="{{$course->id}}" data-content="course" class="btn btn-danger delete">حذف</button>
+
                                 </td>
                                 <td>
                                     <a class="text-danger text-bold" href="{{url(route('video.index',['courseTitle'=>$course->title]))}}">افزودن<span class="label label-info rounded-circle mr-2">

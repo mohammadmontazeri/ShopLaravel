@@ -55,11 +55,7 @@
                                             <a class="label label-primary" href="{{url(route('article.edit',['article'=>$article->id]))}}">ویرایش</a>
                                         </td>
                                         <td>
-                                            <form method="post" action="{{route('article.destroy',['article'=>$article->id])}}">
-                                                {{csrf_field()}}
-                                                {{method_field('delete')}}
-                                                <button class="btn btn-danger">حذف</button>
-                                            </form>
+                                            <button data-test="{{$article->id}}" data-content="article" class="btn btn-danger delete">حذف</button>
                                         </td>
                                     </tr>
                                 @endforeach

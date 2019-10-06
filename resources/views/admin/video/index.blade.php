@@ -51,11 +51,7 @@
                                     <a class="label label-primary" href="{{url(route('video.edit',['video'=>$video]))}}">ویرایش</a>
                                 </td>
                                 <td>
-                                    <form method="post" action="{{route('video.destroy',['video'=>$video->id])}}">
-                                        {{csrf_field()}}
-                                        {{method_field('delete')}}
-                                        <button class="btn btn-danger">حذف</button>
-                                    </form>
+                                    <button data-test="{{$video->id}}" data-content="video" class="btn btn-danger delete">حذف</button>
                                 </td>
                                 <td>
                                     <a class="label label-warning" href="{{url(route('videoDetail',['video'=>$video]))}}">محتوای ویدیو</a>

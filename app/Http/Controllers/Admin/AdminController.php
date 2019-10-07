@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\Category;
+use App\Contact;
 use App\Course;
 use App\Like;
+use App\Newsletter;
 use App\Tag;
 use App\User;
 use App\Video;
@@ -59,6 +61,14 @@ class AdminController extends Controller
             case 'video':
                 $video = Video::where('id',$request->delete_id)->get()->first();
                 $video->delete();
+                break;
+            case 'newsletter':
+                $news = Newsletter::where('id',$request->delete_id)->get()->first();
+                $news->delete();
+                break;
+            case 'contact':
+                $con = Contact::where('id',$request->delete_id)->get()->first();
+                $con->delete();
                 break;
         }
     }

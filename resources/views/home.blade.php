@@ -139,12 +139,19 @@
                     <h3 style="font-family: yekan;direction: rtl">۴۵ درصد تخفیف<a href="#" style="display:block;color: #31708f;font-size: 0.9em;">دوره آموزش ویو جی اس </a></h3>
                 </div>
             </div>
+            @if(session('newsMsg'))
+                <label for="" style="background-color: #f0004c;color: #fff;padding: 5px;box-sizing: border-box;border-radius: 2.5px;">{{session('newsMsg')}}</label>
+            @endif
+            @if ($errors->any())
+                <label for="" style="background-color: #f0004c;color: #fff;padding: 5px;box-sizing: border-box;border-radius: 2.5px;">ایمیل شما قبلا برای دریافت خبرنامه ثبت شده است</label>
+            @endif
             <div class="newsletter animated wow slideInUp" data-wow-delay=".5s">
                 <h3 style="font-family: yekan">خبرنامه</h3>
                 <p>با عضویت در خبرنامه سایت از جدیدترین رویداد ها مطلع گردید</p>
-                <form>
+                <form method="POST" action="{{route('newsletterStore')}}">
+                    @csrf
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                    <input type="email" style="font-family: yekan,Verdana, Arial, sans-serif" value="آدرس ایمیل خود را وارد کنید" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'آدرس ایمیل خود را وارد کنید';}" required="">
+                    <input type="email" name="email" style="font-family: yekan,Verdana, Arial, sans-serif" value="آدرس ایمیل خود را وارد کنید" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'آدرس ایمیل خود را وارد کنید';}" required="">
                     <input type="submit" value="عضویت" style="font-family: yekan;border-radius: 2px" >
                 </form>
             </div>

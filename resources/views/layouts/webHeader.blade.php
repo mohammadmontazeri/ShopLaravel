@@ -53,8 +53,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="header-grid">
             <div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
                 <ul>
-                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true" style="color: #f0004c;"></i><a href="mailto:info@example.com">@example.com</a></li>
-                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true" style="color: #f0004c;"></i>+1234 567 892</li>
+                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true" style="color: #f0004c;"></i>Montazeriput95@gmail.com</li>
+                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true" style="color: #f0004c;"></i>۰۹۱۱۷۱۳۲۲۰۵</li>
                     |
                     <?php
                         if (\Illuminate\Support\Facades\Auth::check()){
@@ -94,7 +94,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.html" class="act">Home</a></li>
+                            <li class="active"><a href="index.html" class="act" style="font-family: yekan">صفحه اصلی</a></li>
                             <!-- Mega Menu -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
@@ -175,7 +175,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
                             <li><a href="short-codes.html">Short Codes</a></li>
-                            <li><a href="mail.html">Mail Us</a></li>
+                            <li><a style="font-family: yekan" href="{{url(route('contact'))}}">تماس با ما</a></li>
                         </ul>
                     </div>
                 </nav>

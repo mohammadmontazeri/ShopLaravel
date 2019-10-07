@@ -43,6 +43,9 @@ Route::prefix('admin')->middleware('auth')->group(function (){
         return view('admin.video.detail',compact('video'));
     })->name('videoDetail');
     Route::resource('/comment','Admin\CommentController');
+    Route::resource('/newsletter','NewsletterController');
+    Route::resource('/contact','ContactController');
+
 
 });
 Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');
@@ -57,3 +60,8 @@ Route::post('login','Auth\LoginController@authenticate')->name('LoginPostUser');
 Route::get('register',function (){
     return view('register');
 })->name('UserRegister');
+Route::post('/newsletter/store','NewsletterController@store')->name('newsletterStore');
+Route::get('/contact-us',function (){
+    return view('contact.contact');
+})->name('contact');
+Route::post('/contact','ContactController@store')->name('contactStore');

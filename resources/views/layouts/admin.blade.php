@@ -163,10 +163,10 @@ desired effect
                         <a href="#"><i class="fa fa-circle"></i> <span>کامنت ها</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-circle"></i> <span>خبرنامه</span></a>
+                        <a href="{{url(route('newsletter.index'))}}"><i class="fa fa-circle"></i> <span>خبرنامه</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-circle"></i> <span>تماس با ما</span></a>
+                        <a href="{{url(route('contact.index'))}}"><i class="fa fa-circle"></i> <span>تماس با ما</span></a>
                     </li>
                     <li>
                         <a href="{{url(route('logout'))}}" style="color: #f94877"><i class="fa fa-square"></i> <span>خروج</span></a>
@@ -175,7 +175,6 @@ desired effect
             </section>
             <!-- /.sidebar -->
         </aside>
-
     <aside class="control-sidebar control-sidebar-dark">
         <!-- Create the tabs -->
         <ul class="nav nav-tabs nav-justified control-sidebar-tabs">

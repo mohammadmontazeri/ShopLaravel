@@ -29,6 +29,9 @@ class AdminController extends Controller
 
             case 'category':
                 $cat = Category::where('id',$request->delete_id)->get()->first();
+                if (file_exists("public$cat->image")){
+                    unlink("public$cat->image");
+                }
                 $cat->delete();
                 break;
             case 'user':
@@ -41,10 +44,16 @@ class AdminController extends Controller
                 break;
             case 'article':
                 $article = Article::where('id',$request->delete_id)->get()->first();
+                if (file_exists("public$article->image")){
+                    unlink("public$article->image");
+                }
                 $article->delete();
                 break;
             case 'course':
                 $course = Course::where('id',$request->delete_id)->get()->first();
+                if (file_exists("public$course->image")){
+                    unlink("public$course->image");
+                }
                 $course->delete();
                 break;
             case 'video':

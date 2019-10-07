@@ -11,7 +11,6 @@
 |
 */
 
-Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');
 
 //Auth::routes();
 Route::prefix('admin')->group(function (){
@@ -19,7 +18,7 @@ Route::prefix('admin')->group(function (){
     Route::post('login', 'Auth\LoginController@login');
     Route::get('logout', function (){
         \Illuminate\Support\Facades\Auth::logout();
-        return redirect(route('login'))->with('msg','شما با موفقیت خارج شده اید');
+        return back()->with('msg','شما با موفقیت خارج شده اید');
     })->name('logout');
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('register', 'Auth\RegisterController@register');
@@ -46,3 +45,15 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::resource('/comment','Admin\CommentController');
 
 });
+Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');
+////// End Admin Route & Start User Route
+Route::get('/',function (){
+    return view('home');
+})->name('home');
+Route::get('login',function (){
+    return view('login');
+})->name('UserLogin');
+Route::post('login','Auth\LoginController@authenticate')->name('LoginPostUser');
+Route::get('register',function (){
+    return view('register');
+})->name('UserRegister');

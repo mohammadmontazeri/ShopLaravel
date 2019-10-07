@@ -53,6 +53,9 @@ class RegisterController extends Controller
         if ($request->role){
             $msg = "ثبت نام شما با موفقیت انجام شد . لطفا وارد شوید";
             return redirect('/admin/register')->with('msg',$msg);
+        }else{
+            $msg = "ثبت نام شما با موفقیت انجام شد" ;
+            return back()->with('msg',$msg);
         }
         return $this->registered($request, $user)
             ?: redirect($this->redirectPath());

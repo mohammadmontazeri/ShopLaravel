@@ -31,7 +31,22 @@ class LoginController extends Controller
     {
          return '/admin/';
     }
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
 
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            if (Auth()->user()->status == 0 && Auth()->user()->role != "admin") {
+                Auth::logout();
+                return back()->with('msg', 'اطلاعات شما هنوز توسط ادمین تایید نشده است');
+            }
+            return redirect('/');
+        }else{
+            $msg = "اطلاعات شما مطابقت ندارد" ;
+            return back()->with('msg',$msg);
+        }
+    }
     public function login(Request $request)
     {
         $this->validateLogin($request);

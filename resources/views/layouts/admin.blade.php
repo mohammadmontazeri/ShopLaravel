@@ -163,6 +163,12 @@ desired effect
                         <a href="#"><i class="fa fa-circle"></i> <span>کامنت ها</span></a>
                     </li>
                     <li>
+                        <a href="#"><i class="fa fa-circle"></i> <span>خبرنامه</span></a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-circle"></i> <span>تماس با ما</span></a>
+                    </li>
+                    <li>
                         <a href="{{url(route('logout'))}}" style="color: #f94877"><i class="fa fa-square"></i> <span>خروج</span></a>
                     </li>
                 </ul><!-- /.sidebar-menu -->
@@ -258,9 +264,9 @@ desired effect
             let delete_type = $(this).attr('data-content');
             let token   = $('meta[name="csrf-token"]').attr('content');
             swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
+                title: "آیا می خواهید ادامه دهید؟",
+              //  text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "error",
                 buttons: true,
                 dangerMode: true,
             })
@@ -279,11 +285,9 @@ desired effect
                                 },
                             success: function () {
                                 setTimeout(function () { location.reload(1); }, 1000);
-                                swal("Done!","It was succesfully deleted!","success");
+                                swal("تمام!","آیتم مورد نظر شما با موفقیت حذف شد");
                             }
                         });
-                    } else {
-                        swal("Your imaginary file is safe!");
                     }
                 });
             function ajax() {

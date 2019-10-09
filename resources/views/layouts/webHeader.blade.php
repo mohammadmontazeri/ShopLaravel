@@ -9,6 +9,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
     <title>فروشگاه محتوا</title>
     <!-- for-mobile-apps -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Best Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -34,6 +35,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //timer -->
     <!-- animation-effect -->
     <link href="{{asset('public/css/animate.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/css/comment/style.css')}}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('public/js/wow.min.js')}}"></script>
     <script>
         new WOW().init();

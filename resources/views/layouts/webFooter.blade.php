@@ -32,6 +32,61 @@
         </div>
     </div>
 </div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.btn_comment').on('click',function (e) {
+            e.preventDefault();
+            let c_type = $(this).attr('data-type');
+            let c_user = $(this).attr('data-content');
+            let c_id = $(this).attr('data-test');
+            let c_array = $(this).attr('data-array');
+            let token   = $('meta[name="csrf-token"]').attr('content');
+            let message = $('#text').val();
+            if (message.length== 0){
+            swal("خطا", "لطفا بعد از نوشتن دیدگاه اقدام به ارسال آن کنید", "error");
+            }else {
+              $.ajax({
+                  url: "{{route('addCommentFromUser')}}",
+                  data: {
+                      c_type: c_type,
+                      c_user: c_user,
+                      c_id: c_id,
+                      message: message,
+                      parent: c_array,
+                  },
+                  headers:
+                      {
+                          'X-CSRF-TOKEN': token
+                      },
+                  success: function () {
+                      setTimeout(function () {
+                            location.reload(1);
+                        }, 1000);
+                      swal("باتشکر", "دیدگاه شما بعد از بررسی ثبت خواهد شد", "success");
+                  }
+              });
+            }
+        })
+        $('.reply').hide();
 
+        $('.fa-reply').on('click',function () {
+            let id = $(this).attr('data-number');
+            $.ajax({
+                url: "{{route('replyCommentUser')}}",
+                data: {
+                    id: id,
+                },
+                success: function (data) {
+                    $(".iran").attr("data-array",id);
+                    $(".show-reply").text(data.data);
+                    $('.reply').show();
+                }
+            });
+            let height = $('.comment_part').height();
+            $("html,body").animate({ scrollTop: height }, "slow");
+        })
+    })
+</script>
 </body>
 </html>

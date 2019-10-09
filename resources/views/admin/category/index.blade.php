@@ -44,13 +44,9 @@
                                     <a class="label label-primary" href="{{url(route('category.edit',['category'=>$category]))}}">ویرایش</a>
                                 </td>
                                 <td>
-                                    {{--<form method="post" action="{{route('category.destroy',['category'=>$category->id])}}">
-                                        {{csrf_field()}}
-                                        {{method_field('delete')}}--}}
+
                                         <button data-test="{{$category->id}}" data-content="category" class="btn btn-danger delete">حذف</button>
-{{--
-                                    </form>
---}}
+
                                 </td>
                             </tr>
 

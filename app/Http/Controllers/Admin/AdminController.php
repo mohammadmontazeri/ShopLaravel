@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Article;
 use App\Category;
+use App\Comment;
 use App\Contact;
 use App\Course;
 use App\Like;
@@ -69,6 +70,24 @@ class AdminController extends Controller
             case 'contact':
                 $con = Contact::where('id',$request->delete_id)->get()->first();
                 $con->delete();
+                break;
+            case 'comment':
+                $comment = Comment::where('id',$request->delete_id)->get()->first();
+                if ($comment->is_parent == '1'){
+                        return response()->json('کامنت مورد نظر دارای زیر پاسخ می باشد');
+                }else{
+                    $parent = $comment->parent;
+                    $comment->delete();
+                    if ($parent != ""){
+                        $com = Comment::where('parent','=',$parent)->get();
+                        if (empty($com[0])) {
+                            $par = Comment::where('id', '=', $parent)->get()->first();
+                            $par->update([
+                                'is_parent' => '0'
+                            ]);
+                        }
+                    }
+                }
                 break;
         }
     }

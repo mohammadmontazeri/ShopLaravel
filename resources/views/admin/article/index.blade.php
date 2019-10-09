@@ -37,7 +37,8 @@
                                             echo $summery = $sum."...";
                                             ?>
                                         </td>
-                                        <td><?php
+                                        <td>
+                                            <?php
                                             $v = new Verta($article->created_at);
                                             $v = \Hekmatinasser\Verta\Verta::instance($article->created_at);
                                             $v = \Hekmatinasser\Verta\Verta::persianNumbers($v);

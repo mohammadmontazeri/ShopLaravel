@@ -15,8 +15,8 @@ class UpdateCommentsTable extends Migration
     {
         Schema::table('comments', function (Blueprint $table) {
             $table->dropColumn('related_id');
-            $table->unsignedBigInteger('article_id')->default(0);
-            $table->unsignedBigInteger('course_id')->default(0);
+            $table->unsignedBigInteger('article_id')->nullable();
+            $table->unsignedBigInteger('course_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('parent')->references('id')->on('comments')

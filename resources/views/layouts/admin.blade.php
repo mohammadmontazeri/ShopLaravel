@@ -16,9 +16,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Ionicons -->
     <link href="{{ asset('public/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('public/dist/css/AdminLTE.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/css/all.css')}}">
     <link rel="stylesheet" href="{{ asset('public/dist/css/skins/skin-blue.min.css')}}">
     <link rel="stylesheet" href="{{ asset('public/plugins/iCheck/square/blue.css') }}">
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    {{--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">--}}
     <!-- Theme style -->
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
@@ -28,6 +29,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
@@ -60,7 +62,7 @@ desired effect
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="" class="logo">
+        <a href="{{url('admin')}}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
@@ -119,7 +121,7 @@ desired effect
     </aside>
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="background-color: #eee">
         @yield('content')
     </div>
         <aside class="main-sidebar">
@@ -148,7 +150,7 @@ desired effect
                         <a href="{{url(route('user.index'))}}"><i class="fa fa-edit"></i> <span>کاربران</span></a>
                     </li>
                     <li>
-                        <a href="{{url(route('category.index'))}}"><i class="fa fa-circle"></i> <span>دسته بندی ها</span></a>
+                        <a href="{{url(route('category.index'))}}"><i class="fa fa-edit"></i> <span>دسته بندی ها</span></a>
                     </li>
                     <li>
                         <a href="{{url(route('tag.index'))}}"><i class="fa fa-circle"></i> <span>برچسب ها</span></a>
@@ -157,10 +159,10 @@ desired effect
                         <a href="{{url(route('article.index'))}}"><i class="fa fa-circle"></i> <span>مقالات</span></a>
                     </li>
                     <li>
-                        <a href="{{url(route('course.index'))}}"><i class="fa fa-circle"></i> <span>دوره های ویدیویی</span></a>
+                        <a href="{{url(route('course.index'))}}"><i class="fas fa-video"></i> <span>دوره های ویدیویی</span></a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-circle"></i> <span>کامنت ها</span></a>
+                        <a href="{{url(route('comment.index'))}}"><i class="fa fa-circle"></i> <span>کامنت ها</span></a>
                     </li>
                     <li>
                         <a href="{{url(route('newsletter.index'))}}"><i class="fa fa-circle"></i> <span>خبرنامه</span></a>
@@ -282,16 +284,21 @@ desired effect
                                 {
                                     'X-CSRF-TOKEN': token
                                 },
-                            success: function () {
-                                setTimeout(function () { location.reload(1); }, 1000);
-                                swal("تمام!","آیتم مورد نظر شما با موفقیت حذف شد");
+                            success: function (data) {
+                                if (data != '') {
+                                    swal(data, {
+                                        icon: "warning",
+                                    });
+                                } else {
+                                    setTimeout(function () {
+                                        location.reload(1);
+                                    }, 1000);
+                                    swal("تمام!", "آیتم مورد نظر شما با موفقیت حذف شد");
+                                }
                             }
                         });
                     }
                 });
-            function ajax() {
-
-            }
            /* Swal({
                     title: "Are you sure?",
                     text: "You will not be able to recover this imaginary file!",

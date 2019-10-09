@@ -1,7 +1,7 @@
 <div class="banner">
     <div class="container">
         <div class="banner-info animated wow zoomIn" data-wow-delay=".5s">
-            <h4 style="font-family: yekan" class="text-bold text-center">به وب سایت منتظری خوش آمدید</h4>
+            <h4 style="font-family: yekan" class="text-bold text-center">برنامه نویسی را مفهومی بیاموزید</h4>
             <h4>Up to <span style="background-color: #f0004c">50% <i>Off/-</i></span></h4>
             <div class="wmuSlider example1">
                 <div class="wmuSliderWrapper">

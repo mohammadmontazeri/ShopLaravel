@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*Route::get('/teest',function (){
+    $comment = \App\Comment::where('id',12)->get()->first();
+    $message = $comment->text;
+    return $message;
+});*/
 
 //Auth::routes();
 Route::prefix('admin')->group(function (){
@@ -42,14 +46,15 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::get('/video/{video}',function (\App\Video $video){
         return view('admin.video.detail',compact('video'));
     })->name('videoDetail');
-    Route::resource('/comment','Admin\CommentController');
     Route::resource('/newsletter','NewsletterController');
     Route::resource('/contact','ContactController');
-
+    Route::resource('/comment','Admin\CommentController');
+    Route::get('reply/{comment}','Admin\CommentController@reply')->name('replyComment');
+    Route::post('reply/{comment}','Admin\CommentController@replyPost')->name('replyCommentPost');
 
 });
 Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');
-////// End Admin Route & Start User Route
+//=============================End Admin Route & Start User Route===============================================//
 Route::get('/',function (){
     return view('home');
 })->name('home');
@@ -65,3 +70,11 @@ Route::get('/contact-us',function (){
     return view('contact.contact');
 })->name('contact');
 Route::post('/contact','ContactController@store')->name('contactStore');
+
+Route::get('course/{course}',function (\App\Course $course){
+   return view('course.detail',compact('course'));
+})->name('courseDetail');
+Route::get('/comment/create','CommentController@store')->name('addCommentFromUser');
+Route::get('/comment/reply','CommentController@reply')->name('replyCommentUser');
+//Route::resource('/course','CourseController');
+

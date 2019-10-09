@@ -9,4 +9,9 @@ class Course extends Model
     protected $fillable=[
         'title','detail','summery','image','cat_id','viewed','like','tag','price'
     ];
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }

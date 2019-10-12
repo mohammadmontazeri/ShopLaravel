@@ -667,9 +667,9 @@ p.est{
 }
 .new-collections-grid{
 	padding-left:0;
+    float: right;
 }
 .new-collections-grids {
-    margin: 3em 0 0;
 }
 .new-collections-grid1{
 	background: #fff;
@@ -731,7 +731,7 @@ p.est{
     font-size:1.2em !important;
 }
 .new-collections {
-    background: #F7F7F9;
+
 }
 .rating-left{
 	float:left;
@@ -1895,7 +1895,7 @@ label.radio {
 }
 .bootstrap-tab-text p{
 	font-size:14px;
-	color:#999;
+	color:#666;
 	line-height:1.8em;
 }
 .bootstrap-tab-text h5,.add-review h4{
@@ -3841,4 +3841,8 @@ td.invert-image a img {
 		float: left;
 		text-align: left;
 	}
+}
+
+.unable{
+    background-color: #dcc4c4 !important;
 }

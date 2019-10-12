@@ -362,6 +362,23 @@ desired effect
                     });
                 }*/
             });
+        $('.download').on('change',function () {
+            let value = $(this).val();
+            if (value != "#"){
+                $.ajax({
+                    url     : "{{route('episodeComment')}}",
+                    method  : 'GET',
+                    data    : {
+                        value  :value,
+                    },
+                    success: function (data) {
+                        console.log(data);
+                    }
+                });
+            }else{
+               // $('.episode').text('');
+            }
+        })
     })
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

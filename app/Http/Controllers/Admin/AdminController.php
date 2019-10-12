@@ -15,6 +15,7 @@ use App\Video;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -90,6 +91,14 @@ class AdminController extends Controller
                 }
                 break;
         }
+    }
+
+    public function courseEpisode(Request $request)
+    {
+        $course = DB::table('courses')->where('id','=',4)->get();
+        //$videos = DB::table('videos')->where('course_id','=',$course->id);
+        return $course;
+        //return response()->json('data',$videos);
     }
 
 }

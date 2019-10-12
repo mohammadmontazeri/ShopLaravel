@@ -21,16 +21,20 @@
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">دوره مورد نظر  را انتخاب کنید</label>
-                    <select name="course_id" id="">
+                    <select class="download" name="course_id" id="">
+                        <option value="#" id="first">انتخاب کنید ...</option>
                         <?php
                         $courses = \App\Course::all();
                         foreach ($courses as $course){
                         ?>
-                        <option value="<?php echo $course->id;?>"><?php echo $course->title;?></option>
+                        <option  value="<?php echo $course->id;?>"><?php echo $course->title;?></option>
                         <?php
                         }
                         ?>
                     </select>
+                </div>
+                <div class="episode" style="width: 50px;background-color: #f6f6f6;height: 30px">
+
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">

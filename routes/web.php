@@ -10,11 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Route::get('/teest',function (){
-    $comment = \App\Comment::where('id',12)->get()->first();
-    $message = $comment->text;
-    return $message;
-});*/
+
 
 //Auth::routes();
 Route::prefix('admin')->group(function (){
@@ -51,6 +47,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::resource('/comment','Admin\CommentController');
     Route::get('reply/{comment}','Admin\CommentController@reply')->name('replyComment');
     Route::post('reply/{comment}','Admin\CommentController@replyPost')->name('replyCommentPost');
+    Route::get('episode','Admin\AdminController@courseEpisode')->name('episodeComment');
 
 });
 Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');
@@ -77,4 +74,16 @@ Route::get('course/{course}',function (\App\Course $course){
 Route::get('/comment/create','CommentController@store')->name('addCommentFromUser');
 Route::get('/comment/reply','CommentController@reply')->name('replyCommentUser');
 //Route::resource('/course','CourseController');
+Route::get('article/{article}',function (\App\Article $article){
+    return view('article.detail',compact('article'));
+})->name('articleDetail');
+//
+Route::get('/tag',function (\Illuminate\Http\Request $request){
+    $tag = $request->tag;
+    return view('tag.index',compact('tag'));
+})->name('tagIndex');
+//
+Route::get('video/{video}',function (\App\Video $video){
+    return view('video.detail',compact('video'));
+})->name('videoDetail');
 

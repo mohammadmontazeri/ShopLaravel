@@ -34,7 +34,7 @@
                 <div style="direction: rtl" class="col-md-12 single-right-left simpleCart_shelfItem animated wow slideInRight" data-wow-delay=".5s">
                     <div style="padding-top:10px;display: flex;justify-content: space-between">
                         <h3 style="font-family: yekan;font-weight: bolder;color: #595959">{{$course->title}}</h3>
-                        <span style=";font-size:0.9em;font-weight: bold;color: #f0004c;  font-family: yekan;padding: 7px 12px;border: solid 1px #ddd;border-radius: 2px;">{{$course->price}}</span>
+                        <span style=";font-size:0.85em;font-weight: bold;color: #fff;background-color:#3a87ad;padding: 7px 12px;border: solid 1.5px #d0d0d0;border-radius: 3px;">{{$course->price}}</span>
                     </div>
                     <div class="description">
                         <h5 style="font-family: yekan;font-weight: bold">توضیحات</h5>
@@ -47,8 +47,8 @@
                         <h5 style="font-weight: bold;padding-bottom: 10px;">برچسب ها</h5>
                         <ul style="display: flex;font-size: 0.8em;font-weight: bold;color: #8a8a8a">
                             @foreach($tags as $tag)
-                            <li style="margin-left: 8px;"><a href="#">#{{$tag}}</a></li>
-                                @endforeach
+                            <li style="margin-left: 8px;"><a href="{{url(route('tagIndex',['tag'=>$tag]))}}">#{{$tag}}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -57,6 +57,7 @@
                     <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                         <ul id="myTab" class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true" style="font-size: 0.9em;font-weight: bold">توضیحات کامل</a></li>
+                            <li role="presentation"><a href="#video" id="video-tab" role="tab" data-toggle="tab" aria-controls="video" aria-expanded="true" style="font-size: 0.9em;font-weight: bold">جلسات دوره</a></li>
                             <li role="presentation"><a  href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile" style="font-family:yekan;font-weight:bold;font-size: 0.9em;"> نظرات(<span style="color:#f0004c;font-weight:bold;padding: 3px;font-family: 'yekan', sans-serif">{{$num}}</span>) </a></li>
                         </ul>
                         <div id="myTabContent" class="tab-content">
@@ -64,6 +65,24 @@
                                 <p style="direction: rtl;margin-top: 20px;padding: 10px;line-height: 35px">
                                         {!! $course->detail !!}
                                 </p>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="video" aria-labelledby="video-tab">
+                                    <?php
+                                    $videos = $course->videos;
+                                foreach ($videos as $video){
+                                 ?>
+                                        <div style="direction:rtl;background-color: #f6f6f6;border: solid 1.2px #ddd;border-radius: 2px;padding: 10px;display: flex;justify-content: space-between;margin-bottom: 5px">
+                                            <div class="right-item">
+                                                <span style="color:#fff;font-size: 1em;font-weight: bold;background-color: #3a87ad;display:inline-block;text-align:center;width: 20px;border-radius: 50%;border: solid 1.5px #d0d0d0">{{$video->id}}</span>
+                                                <a href="{{url(route('videoDetail',['video'=>$video->id]))}}" style="font-size: .85em;color: #5a6268;font-weight: bold" >{{$video->title}}</a>
+                                            </div>
+                                            <div class="left-item">
+                                                <span style="font-size: .9em;color: #f0004c;">{{$video->time}}</span>
+                                            </div>
+                                        </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <div style="direction: rtl" role="tabpanel" class="tab-pane fade bootstrap-tab-text" id="profile" aria-labelledby="profile-tab">
                                @if(\Illuminate\Support\Facades\Auth::check())
@@ -82,13 +101,12 @@
                                                 <?php
                                                 function parent($parent, $course_id)
                                                 {
-                                                echo "<ul>";
-                                                $parents = \App\Comment::where('parent',$parent)->get();
-                                                foreach ($parents as $par) {
-                                                if ($par['status'] == "1") {
+                                                     $parents = \App\Comment::where('parent',$parent)->get();
+                                                     foreach ($parents as $par) {
+                                                        if ($par['status'] == "1"){
                                                 ?>
-                                                <li>
-                                                    <div class="cmt_answer">
+                                                <ul>
+                                                    <div style="margin-bottom: 5px;" class="cmt_answer">
                                                         <div class="user_inf">
                                                             <div>
                                                                 <img src="{{asset('public/images/2.jpg')}}" alt="">
@@ -117,14 +135,13 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                </li>
+                                                </ul>
                                                 <?php
-                                                if ($par['is_parent'] == "1") {
-                                                    parent($par['id'], $course_id);
+                                                    if ($par['is_parent'] == "1") {
+                                                        parent($par['id'], $course_id);
+                                                    }
                                                 }
                                                 }
-                                                }
-                                                echo "</ul></div></li>";
                                                 }
                                                 function ch($comments, $course)
                                                 {
@@ -167,6 +184,10 @@
                                                         </div>
                                                 <?php
                                                 parent($item['id'], $course['id']);
+                                                ?>
+                                                    </div>
+                                                </li>
+                                                    <?php
                                                 }
                                                 if (($item['parent'] == "") && ($item['is_parent'] == "0") && ($item['status'] == "1")) {
                                                 ?>

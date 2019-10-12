@@ -8,8 +8,8 @@
         }
     </style>
     <?php
-    $courses = \App\Course::paginate(4);
-    $articles = \App\Article::paginate(4);
+    $courses = \App\Course::latest()->paginate(4);
+    $articles = \App\Article::latest()->paginate(4);
     ?>
     <div class="new-collections">
         <div class="container">
@@ -58,10 +58,10 @@
                 <div class="col-md-3 new-collections-grid">
                     <div class="new-collections-grid1" data-wow-delay=".5s">
                         <div class="new-collections-grid1-image" style="height: 150px;">
-                            <a href="single.html" class=""><img style="border-top-left-radius:2px;border-top-right-radius: 2px; " height="100%" src="{{asset("public$article->image")}}" width="100%"/></a>
+                            <a href="{{url(route('articleDetail',['article'=>$article->id]))}}" class=""><img style="border-top-left-radius:2px;border-top-right-radius: 2px; " height="100%" src="{{asset("public$article->image")}}" width="100%"/></a>
                         </div>
                         <div style="padding: 0.5em;">
-                            <h4 style="font-family: yekan;font-weight: bold;direction: rtl" class="text-center"><a href="single.html">{{$article->title}}</a></h4>
+                            <h4 style="font-family: yekan;font-weight: bold;direction: rtl" class="text-center"><a href="{{url(route('articleDetail',['article'=>$article->id]))}}">{{$article->title}}</a></h4>
                             <p style="direction: rtl">
                                 <?php
                                 $sum = substr($article['summery'],0,100);

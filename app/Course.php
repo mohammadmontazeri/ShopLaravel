@@ -14,4 +14,8 @@ class Course extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    public function videos()
+    {
+        return $this->hasMany('App\Video');
+    }
 }

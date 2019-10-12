@@ -25,6 +25,10 @@ class UpdateCommentsTable extends Migration
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('course_id')->references('id')->on('courses')
                 ->onDelete('cascade')->onUpdate('cascade');
+            $table->unsignedBigInteger('episode_id')->nullable();
+            $table->foreign('episode_id')->references('id')->on('videos')
+                ->onDelete('cascade')->onUpdate('cascade');
+
         });
     }
 

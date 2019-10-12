@@ -36,6 +36,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- animation-effect -->
     <link href="{{asset('public/css/animate.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('public/css/comment/style.css')}}">
+    <link rel="stylesheet" href="{{asset('public/css/video.scss')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('public/js/wow.min.js')}}"></script>
     <script>
@@ -43,7 +44,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <style>
         body{
-            font-family: yekan;
+            font-family: 'yekan', sans-serif !important;
         }
     </style>
     <!-- //animation-effect -->
@@ -100,12 +101,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li class="active"><a href="index.html" class="act" style="font-family: yekan">صفحه اصلی</a></li>
                             <!-- Mega Menu -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Products <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'yekan', sans-serif">دوره های آموزشی <b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
-                                                <h6>Men's Wear</h6>
                                                 <li><a href="products.html">Clothing</a></li>
                                                 <li><a href="products.html">Wallets</a></li>
                                                 <li><a href="products.html">Shoes</a></li>
@@ -115,7 +115,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
-                                                <h6>Women's Wear</h6>
                                                 <li><a href="products.html">Clothing</a></li>
                                                 <li><a href="products.html">Wallets,Bags</a></li>
                                                 <li><a href="products.html">Footwear</a></li>
@@ -127,7 +126,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
-                                                <h6>Kid's Wear</h6>
                                                 <li><a href="products.html">Kids Home Fashion</a></li>
                                                 <li><a href="products.html">Boy's Clothing</a></li>
                                                 <li><a href="products.html">Girl's Clothing</a></li>
@@ -140,12 +138,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Furniture <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'yekan', sans-serif">مقالات <b class="caret"></b></a>
                                 <ul class="dropdown-menu multi-column columns-3">
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
-                                                <h6>Home Collection</h6>
                                                 <li><a href="furniture.html">Cookware</a></li>
                                                 <li><a href="furniture.html">Sofas</a></li>
                                                 <li><a href="furniture.html">Dining Tables</a></li>
@@ -155,7 +152,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
-                                                <h6>Office Collection</h6>
                                                 <li><a href="furniture.html">Carpets</a></li>
                                                 <li><a href="furniture.html">Tables</a></li>
                                                 <li><a href="furniture.html">Sofas</a></li>
@@ -166,7 +162,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                         </div>
                                         <div class="col-sm-4">
                                             <ul class="multi-column-dropdown">
-                                                <h6>Decorations</h6>
                                                 <li><a href="furniture.html">Toys</a></li>
                                                 <li><a href="furniture.html">Wall Clock</a></li>
                                                 <li><a href="furniture.html">Lighting</a></li>
@@ -177,7 +172,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </div>
                                 </ul>
                             </li>
-                            <li><a href="short-codes.html">Short Codes</a></li>
                             <li><a style="font-family: yekan" href="{{url(route('contact'))}}">تماس با ما</a></li>
                         </ul>
                     </div>
@@ -187,7 +181,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="search-box">
                     <div id="sb-search" class="sb-search">
                         <form>
-                            <input class="sb-search-input" placeholder="Enter your search term..." type="search" id="search">
+                            <input style="direction: rtl" class="sb-search-input" placeholder="عبارت مورد نظر خود را از اینجا جستجو کنید ..." type="search" id="search">
                             <input class="sb-search-submit"  type="submit" value="">
                             <span class="sb-icon-search" style="color: #f0004c"> </span>
                         </form>

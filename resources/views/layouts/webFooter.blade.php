@@ -34,6 +34,7 @@
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
+
     $(document).ready(function () {
         $('.btn_comment').on('click',function (e) {
             e.preventDefault();
@@ -69,7 +70,6 @@
             }
         })
         $('.reply').hide();
-
         $('.fa-reply').on('click',function () {
             let id = $(this).attr('data-number');
             $.ajax({
@@ -85,6 +85,13 @@
             });
             let height = $('.comment_part').height();
             $("html,body").animate({ scrollTop: height }, "slow");
+           // $("html,body").slideUp();
+        })
+        $('.download').click(function () {
+            let auth = "<?php if (\Illuminate\Support\Facades\Auth::check()){echo "Auth Ok";}  ?>";
+            if (auth.length == 0){
+                swal("خطا", "برای دریافت این فایل ابتدا باید وارد سایت شوید", "error");
+            }
         })
     })
 </script>

@@ -47,7 +47,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     Route::resource('/comment','Admin\CommentController');
     Route::get('reply/{comment}','Admin\CommentController@reply')->name('replyComment');
     Route::post('reply/{comment}','Admin\CommentController@replyPost')->name('replyCommentPost');
-    Route::get('episode','Admin\AdminController@courseEpisode')->name('episodeComment');
+    Route::get('episode/{id}','Admin\AdminController@courseEpisode')->name('episodeComment');
 
 });
 Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');

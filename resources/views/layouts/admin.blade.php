@@ -366,13 +366,12 @@ desired effect
             let value = $(this).val();
             if (value != "#"){
                 $.ajax({
-                    url     : "{{route('episodeComment')}}",
+                    url     : "{{url('admin/episode')}}/"+value,
                     method  : 'GET',
-                    data    : {
-                        value  :value,
-                    },
                     success: function (data) {
-                        console.log(data);
+                        $.each( data.data, function( key, value ) {
+                            $('.episode').text(value.title);
+                        });
                     }
                 });
             }else{

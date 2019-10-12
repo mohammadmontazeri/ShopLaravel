@@ -93,12 +93,12 @@ class AdminController extends Controller
         }
     }
 
-    public function courseEpisode(Request $request)
+    public function courseEpisode(Request $request,$id)
     {
-        $course = DB::table('courses')->where('id','=',4)->get();
-        //$videos = DB::table('videos')->where('course_id','=',$course->id);
-        return $course;
-        //return response()->json('data',$videos);
+        $course = DB::table('courses')->where('id','=',$id)->get();
+        $videos = DB::table('videos')->where('course_id','=',$course[0]->id)->get();
+        //return $videos;
+       return response()->json(['data'=>$videos]);
     }
 
 }

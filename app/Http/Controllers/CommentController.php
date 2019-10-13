@@ -52,6 +52,7 @@ class CommentController extends Controller
                     'course_id' => $request->c_id,
                     'user_id' =>$request->c_user,
                     'related_to' => 'course',
+                    'episode_id' => $request->c_episode,
                     'parent'=>$request->parent
                 ]);
             }
@@ -69,7 +70,8 @@ class CommentController extends Controller
                     'text'=> $request->message,
                     'course_id' => $request->c_id,
                     'user_id' =>$request->c_user,
-                    'related_to' => 'course'
+                    'related_to' => 'course',
+                    'episode_id' => $request->c_episode
                 ]);
             }
         }

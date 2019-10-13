@@ -7,7 +7,7 @@
     <?php
     $cats = \App\Category::all();
     $tags = explode(',',$course->tag);
-    $comments = $course->comments()->orderBy('id','DESC')->get();
+    $comments = $course->comments()->orderBy('id','DESC')->where('episode_id',null)->get();
     $num = count($comments->where('status','1'));
     // add viewed
     $viewed = $course->viewed + 1;
@@ -93,7 +93,7 @@
                                             </div>
                                             <div class="typing_part">
                                                     <textarea name="text" id="text" style="padding:7px;width: 100%;border: solid 2px #ddd;height: 175px;border-radius: 2px;" placeholder="در مورد این پست دیدگاهی داری..."></textarea>
-                                                    <button data-content="{{Auth()->user()->id}}" data-type="course" data-test="{{$course->id}}"  class="btn_comment iran" style="font-family: yekan">
+                                                    <button data-content="{{Auth()->user()->id}}" data-type="course" data-test="{{$course->id}}" data-for=""  class="btn_comment iran" style="font-family: yekan">
                                                         ارسال دیدگاه
                                                     </button>
                                             </div>

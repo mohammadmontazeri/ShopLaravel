@@ -53,7 +53,8 @@ class CommentController extends Controller
                 'text'=> $request->text,
                 'course_id' => $request->course_id,
                 'user_id' => Auth()->user()->id,
-                'related_to' => 'course'
+                'related_to' => 'course',
+                'episode_id' => $request->episode_id
             ]);
         }
         return back();
@@ -132,6 +133,7 @@ class CommentController extends Controller
                 'course_id' => $comment->course_id,
                 'user_id' => Auth()->user()->id,
                 'related_to' => 'course',
+                'episode_id' => $comment->episode_id,
                 'parent' => $comment->id,
             ]);
         }

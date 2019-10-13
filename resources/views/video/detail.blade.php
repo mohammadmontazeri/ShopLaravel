@@ -8,8 +8,9 @@
     $cats = \App\Category::all();
     $tags = explode(',',$video->tag);
     $course = \App\Course::where('id',$video->course_id)->get()->first();
-    $comments = $course->comments()->orderBy('id','DESC')->get();
+    $comments = $course->comments()->orderBy('id','DESC')->where('episode_id',$video->id)->get();
     $num = count($comments->where('status','1'));
+    $counter = $video->id;
     // add viewed
     //$viewed = $course->viewed + 1;
     //$course->update(['viewed'=>$viewed]);
@@ -29,13 +30,12 @@
             <div class="col-md-8 single-right">
                 <div class="col-md-12 single-right-left animated wow slideInUp" data-wow-delay=".5s">
                     <div class="flexslider">
-                        <div id="instructions">
-                            <video id="my_video_1" class="video-js vjs-default-skin" width="100%" height="267px"
+                            <video id="my_video_1" class="video-js vjs-default-skin"style="width: 100%;height: 300px"
                                    controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
                                    data-setup='{}'>
-                                <source src="{{asset("public/$video->url")}}" type='video/mp4' />
+                                <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+                                <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
                             </video>
-                        </div>
                     </div>
                 </div>
                 <div style="direction: rtl" class="col-md-12 single-right-left simpleCart_shelfItem animated wow slideInRight" data-wow-delay=".5s">
@@ -96,7 +96,7 @@
                                             </div>
                                             <div class="typing_part">
                                                     <textarea name="text" id="text" style="padding:7px;width: 100%;border: solid 2px #ddd;height: 175px;border-radius: 2px;" placeholder="در مورد این پست دیدگاهی داری..."></textarea>
-                                                    <button data-content="{{Auth()->user()->id}}" data-type="course" data-test="{{$course->id}}"  class="btn_comment iran" style="font-family: yekan">
+                                                    <button data-content="{{Auth()->user()->id}}" data-type="course" data-test="{{$course->id}}" data-for="{{$counter}}"  class="btn_comment iran" style="font-family: yekan">
                                                         ارسال دیدگاه
                                                     </button>
                                             </div>

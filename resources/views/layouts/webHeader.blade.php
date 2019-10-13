@@ -36,7 +36,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- animation-effect -->
     <link href="{{asset('public/css/animate.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('public/css/comment/style.css')}}">
-    <link rel="stylesheet" href="{{asset('public/css/video.scss')}}">
+    <link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/css/video.css')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{asset('public/js/wow.min.js')}}"></script>
     <script>
@@ -98,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                     <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.html" class="act" style="font-family: yekan">صفحه اصلی</a></li>
+                            <li class="active"><a href="{{url(route('home'))}}" class="act" style="font-family: yekan">صفحه اصلی</a></li>
                             <!-- Mega Menu -->
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'yekan', sans-serif">دوره های آموزشی <b class="caret"></b></a>

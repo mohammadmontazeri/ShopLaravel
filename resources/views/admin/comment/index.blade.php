@@ -76,15 +76,7 @@
                                   ?>
                               </td>
                               <td>
-                                  <?php
-                                      $user = \App\User::where('id',$comment->user_id)->get()->first();
-                                    if ($user->role == 'admin'){
-                                    ?>
                                       <a class="label label-primary" href="{{url(route('comment.edit',['comment'=>$comment->id]))}}">ویرایش</a>
-<?php
-                                    }
-
-                                  ?>
                               </td>
                               <td>
                                   <button data-test="{{$comment->id}}" data-content="comment" class="btn btn-danger delete">حذف</button>

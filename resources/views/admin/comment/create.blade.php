@@ -33,13 +33,12 @@
                         ?>
                     </select>
                 </div>
-                <div class="episode" style="width: 50px;background-color: #f6f6f6;height: 30px">
+                <div class="episode">
 
                 </div>
                 <div class="form-group row">
                     <div class="col-md-6">
-                        <textarea id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="text" required autocomplete="name" autofocus>
-                        </textarea>
+                        <textarea id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="text" required autocomplete="name" autofocus></textarea>
                     </div>
                 </div>
                 <div class="form-group row mb-0">

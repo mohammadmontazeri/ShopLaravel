@@ -83,7 +83,7 @@ Route::get('/tag',function (\Illuminate\Http\Request $request){
     return view('tag.index',compact('tag'));
 })->name('tagIndex');
 //
-Route::get('video/{video}',function (\App\Video $video){
+Route::get('episode/{video}',function (\App\Video $video){
     return view('video.detail',compact('video'));
 })->name('videoDetail');
 

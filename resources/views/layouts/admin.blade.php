@@ -369,15 +369,18 @@ desired effect
                     url     : "{{url('admin/episode')}}/"+value,
                     method  : 'GET',
                     success: function (data) {
-                        $.each( data.data, function( key, value ) {
-                            $('.episode').text(value.title);
+                        let str="<select name='episode_id'><option value=''>"+"انتخاب کنید ..."+"</option>";
+                        $.each(data.data, function (key,value) {
+                                str += "<option value="+value.id+">" + value.title + "</option>";
                         });
+                        let text = "قسمت مورد نظر خود را انتخاب کنید:";
+                        $('.episode').html(text+str+'</select>');
                     }
                 });
             }else{
-               // $('.episode').text('');
+                //$('.episode').hide();
             }
-        })
+        });
     })
 </script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

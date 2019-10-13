@@ -33,6 +33,7 @@
     </div>
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
 <script>
 
     $(document).ready(function () {
@@ -42,6 +43,7 @@
             let c_user = $(this).attr('data-content');
             let c_id = $(this).attr('data-test');
             let c_array = $(this).attr('data-array');
+            let c_episode = $(this).attr('data-for');
             let token   = $('meta[name="csrf-token"]').attr('content');
             let message = $('#text').val();
             if (message.length== 0){
@@ -54,6 +56,7 @@
                       c_user: c_user,
                       c_id: c_id,
                       message: message,
+                      c_episode:c_episode,
                       parent: c_array,
                   },
                   headers:
@@ -93,6 +96,25 @@
                 swal("خطا", "برای دریافت این فایل ابتدا باید وارد سایت شوید", "error");
             }
         })
+
+        $(function(){
+            var $refreshButton = $('#refresh');
+            var $results = $('#css_result');
+
+            function refresh(){
+                var css = $('style.cp-pen-styles').text();
+                $results.html(css);
+            }
+
+            refresh();
+            $refreshButton.click(refresh);
+
+            // Select all the contents when clicked
+            $results.click(function(){
+                $(this).select();
+            });
+        });
+
     })
 </script>
 </body>

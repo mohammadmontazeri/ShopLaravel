@@ -86,4 +86,10 @@ Route::get('/tag',function (\Illuminate\Http\Request $request){
 Route::get('episode/{video}',function (\App\Video $video){
     return view('video.detail',compact('video'));
 })->name('videoDetail');
+//
+Route::get('/category/{category}',function (\App\Category $category){
+    return view('category.index',compact('category'));
+})->name('catIndex');
+//
+Route::get('search','Admin\AdminController@search')->name('search_ajax');
 

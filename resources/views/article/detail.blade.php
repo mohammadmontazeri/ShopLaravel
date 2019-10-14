@@ -20,7 +20,7 @@
                     <h4 style="font-family: yekan;font-weight: bolder;text-align: center;padding: 20px 0px;background-color: #eee">دسته بندی ها</h4>
                     <ul class="cate" style="direction: rtl">
                         @foreach($cats as $cat)
-                        <li style="direction: ltr"><a href="#">{{$cat->name}}</a></li>
+                        <li style="direction: ltr"><a href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
                             @endforeach
                     </ul>
                 </div>
@@ -235,10 +235,10 @@
     <!-- single-related-products -->
     <div class="new-collections">
         <div class="container">
-            <h4  style="color: #111;padding: 10px;font-weight: bolder"  class="text-center">مقالات آموزشی مرتبط </h4>
+            <h4  style="color: #111;padding: 10px;font-weight: bolder"  class="text-center">مقالات آموزشی پیشنهادی </h4>
             <div class="new-collections-grids" style="direction: rtl">
                 <?php
-                $articles = \App\Article::where('tag','like',"%$article->tag%")->where('id','!=',$article->id)->get();
+                $articles = \App\Article::all()->random(4);
                 foreach ($articles as $article){
                 ?>
                 <div class="col-md-3 new-collections-grid">

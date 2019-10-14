@@ -20,7 +20,7 @@
                     <h4 style="font-family: yekan;font-weight: bolder;text-align: center;padding: 20px 0px;background-color: #eee">دسته بندی ها</h4>
                     <ul class="cate" style="direction: rtl">
                         @foreach($cats as $cat)
-                        <li style="direction: ltr"><a href="#">{{$cat->name}}</a></li>
+                        <li style="direction: ltr"><a href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
                             @endforeach
                     </ul>
                 </div>
@@ -254,10 +254,10 @@
     <!-- single-related-products -->
     <div class="new-collections">
         <div class="container">
-            <h4  style="color: #111;padding: 10px;font-weight: bolder"  class="text-center">دوره های آموزشی مرتبط </h4>
+            <h4  style="color: #111;padding: 10px;font-weight: bolder"  class="text-center">دوره های آموزشی پیشنهادی </h4>
             <div class="new-collections-grids" style="direction: rtl">
                 <?php
-                $courses = \App\Course::where('tag','like',"%$course->tag%")->where('id','!=',$course->id)->get();
+                $courses = \App\Course::all()->random(4);
                 foreach ($courses as $course){
                 ?>
                 <div class="col-md-3 new-collections-grid">
@@ -274,7 +274,7 @@
                                 ?>
                             </p>
                             <div class="new-collections-grid1-left simpleCart_shelfItem" style="display: flex;justify-content: space-between">
-                                <span style="font-weight: bold;font-size: 0.85em;padding: 5px 8px;" > <i style="color: #bbb" class="fa fa-eye"></i><span style="color: #999"> {{$course->viewed}} </span></span>
+                                <span style="font-weight: bold;font-size: 0.85em;padding: 5px 8px;" > <i style="color: #bbb" class="fa fa-ear"></i><span style="color: #999"> {{$course->viewed}} </span></span>
                                 <span style="direction:rtl;color: #fff;border-radius:2px;font-weight: bold;background-color: #595959;padding: 5px 8px;box-sizing: border-box;font-size: 0.9em;">{{$course->price}}</span>
                             </div>
                         </div>

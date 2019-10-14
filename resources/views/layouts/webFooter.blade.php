@@ -15,11 +15,16 @@
                 </ul>
             </div>
             <div class="col-md-4 footer-grid animated wow slideInLeft" data-wow-delay=".6s">
-                <h3 style="font-family: yekan">پربازدیدترین ها</h3>
+                <h3 style="font-family: yekan"> پربازدیدترین ها دوره ها</h3>
                 <ul>
-                    <li><a href="#">آموزش بوت استرپ</a></li>
-                    <li><a href="#">آموزش گرید بندی در س اس اس</a></li>
-                    <li><a href="#">دوره ساخت فروشگاه با لاراول</a></li>
+                    <?php
+                    $viewCourses = \App\Course::orderBy('viewed','ASC')->paginate(3);
+                    foreach ($viewCourses as $viewCourse){
+                    ?>
+                    <li><a href="{{url(route('courseDetail',['course'=>$viewCourse->id]))}}">{{$viewCourse->viewed}}</a></li>
+                    <?php
+                        }
+                        ?>
                 </ul>
             </div>
             <div class="clearfix"> </div>
@@ -33,7 +38,7 @@
     </div>
 </div>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src='https://vjs.zencdn.net/7.6.5/video.js'></script>
+<script src="{{asset("public/js/video.js")}}"></script>
 <script>
 
     $(document).ready(function () {
@@ -64,9 +69,7 @@
                           'X-CSRF-TOKEN': token
                       },
                   success: function () {
-                      setTimeout(function () {
-                            location.reload(1);
-                        }, 1000);
+                      setTimeout(function () {location.reload(1);}, 1000);
                       swal("باتشکر", "دیدگاه شما بعد از بررسی ثبت خواهد شد", "success");
                   }
               });
@@ -96,26 +99,74 @@
                 swal("خطا", "برای دریافت این فایل ابتدا باید وارد سایت شوید", "error");
             }
         })
+        $('.display-search').hide();
+        $('.tol').on('keyup',function () {
+            $( ".fa-times-circle" ).hide();
+            $( ".fa-circle-notch" ).show();
+            setTimeout(function () {
+                let value = $('.tol').val();
+                if (value.length == 0){
+                    $( ".fa-times-circle" ).hide();
+                    $( ".fa-circle-notch" ).hide();
+                    $('.display-search').hide();
+                }else {
+                    $('.tol').blur(function () {
+                        $('.display-search').hide();
+                    })
+                    $('.tol').focus(function () {
+                        let value = $('.tol').val();
+                        if (value.length != 0){
+                            $('.display-search').show();
+                        }
+                    })
+                    $.ajax({
+                        url:"{{route('search_ajax')}}",
+                        data:{
+                            value:value
+                        },
+                        success:function (data) {
+                            //alert(data.data);
+                            if (data.data != "empty"){
+                                if(data.data.length === 0){
+                                    $('.display-search').hide();
+                                }
+                                let str="<ul style='direction: rtl'>";
+                                $.each(data.data, function (key,value) {
+                                    if ((typeof value.price !== 'undefined')&&(typeof value.course_id === 'undefined')){
+                                        str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href='' style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"دوره"+"</span>"+ "</li>";
+                                    }
+                                    if (typeof value.price === 'undefined'){
+                                        str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href='' style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"مقاله"+"</span>"+ "</li>";
+                                    }
+                                    if ((typeof value.price !== 'undefined')&&(typeof value.course_id !== 'undefined')){
+                                        str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href='' style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"ویدیوها"+"</span>"+ "</li>";
+                                    }
+                                });
+                                $('.display-search').show();
+                                $( ".fa-circle-notch" ).hide();
+                                $( ".fa-times-circle" ).show();
+                                $('.fa-times-circle').on('click',function () {
+                                    $('.tol').val('');
+                                    $(this).hide();
+                                    $('.display-search').hide();
 
-        $(function(){
-            var $refreshButton = $('#refresh');
-            var $results = $('#css_result');
+                                })
 
-            function refresh(){
-                var css = $('style.cp-pen-styles').text();
-                $results.html(css);
-            }
+                                $('.display-search').html(str+'</ul>');
+                            }else {
+                                $( ".fa-circle-notch" ).hide();
+                                $('.display-search').hide();
+                            }
+                        },
+                    })
+                }
 
-            refresh();
-            $refreshButton.click(refresh);
+            },1000);
 
-            // Select all the contents when clicked
-            $results.click(function(){
-                $(this).select();
-            });
-        });
-
+        })
     })
+    $( ".fa-circle-notch" ).hide();
+    $( ".fa-times-circle" ).hide();
 </script>
 </body>
 </html>

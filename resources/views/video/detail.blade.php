@@ -22,7 +22,7 @@
                     <h4 style="font-family: yekan;font-weight: bolder;text-align: center;padding: 20px 0px;background-color: #eee">دسته بندی ها</h4>
                     <ul class="cate" style="direction: rtl">
                         @foreach($cats as $cat)
-                        <li style="direction: ltr"><a href="#">{{$cat->name}}</a></li>
+                        <li style="direction: ltr"><a href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
                             @endforeach
                     </ul>
                 </div>
@@ -30,10 +30,10 @@
             <div class="col-md-8 single-right">
                 <div class="col-md-12 single-right-left animated wow slideInUp" data-wow-delay=".5s">
                     <div class="flexslider">
-                            <video id="my_video_1" class="video-js vjs-default-skin"style="width: 100%;height: 300px"
-                                   controls preload="none" poster='http://video-js.zencoder.com/oceans-clip.jpg'
+                            <video id="my_video_1" class="video-js vjs-default-skin"style="border: solid 2px #d0d0d0;width: 100%;height: 300px"
+                                   controls preload="none" poster="{{asset("public/images/12.jpg")}}"
                                    data-setup='{}'>
-                                <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+                                <source src="{{asset("public/$video->url")}}" type='video/mp4' />
                                 <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
                             </video>
                     </div>
@@ -257,10 +257,10 @@
     <!-- single-related-products -->
     <div class="new-collections">
         <div class="container">
-            <h4  style="color: #111;padding: 10px;font-weight: bolder"  class="text-center">دوره های آموزشی مرتبط </h4>
+            <h4  style="color: #111;padding: 10px;font-weight: bolder;margin-bottom: 50px;"  class="text-center">دوره های آموزشی پیشنهادی </h4>
             <div class="new-collections-grids" style="direction: rtl">
                 <?php
-                $courses = \App\Course::where('tag','like',"%$course->tag%")->where('id','!=',$course->id)->get();
+                $courses = \App\Course::all()->random(4);
                 foreach ($courses as $course){
                 ?>
                 <div class="col-md-3 new-collections-grid">

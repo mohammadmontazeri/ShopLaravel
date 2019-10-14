@@ -36,9 +36,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- animation-effect -->
     <link href="{{asset('public/css/animate.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('public/css/comment/style.css')}}">
-    <link href="https://vjs.zencdn.net/7.6.5/video-js.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('public/css/video-js.css')}}">
     <link rel="stylesheet" href="{{asset('public/css/video.css')}}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset("public/css/fontawesome.min.css")}}">
     <script src="{{asset('public/js/wow.min.js')}}"></script>
     <script>
         new WOW().init();
@@ -76,6 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     }
                     ?>
                    </ul>
+                <li><i class="fa fa-circle-notch fa-spin" style="font-size: 1em;color: #cf234f"></i></li>
+                <li><i class="fa fa-circle fa-times-circle" style="cursor: pointer;font-size: 1em;color: #cf234f"></i></li>
             </div>
             <div class="header-grid-right animated wow slideInRight" data-wow-delay=".5s">
 
@@ -86,7 +89,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
                 <h1><a href="{{url(route('home'))}}">Best Store <span style="color: #f0004c">Shop anywhere</span></a></h1>
             </div>
-            <div class="logo-nav-left1">
+            <div class="logo-nav-left1" style="display: flex;flex-direction: column">
                 <nav class="navbar navbar-default">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header nav_2">
@@ -102,87 +105,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <li class="active"><a href="{{url(route('home'))}}" class="act" style="font-family: yekan">صفحه اصلی</a></li>
                             <!-- Mega Menu -->
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'yekan', sans-serif">دوره های آموزشی <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="products.html">Clothing</a></li>
-                                                <li><a href="products.html">Wallets</a></li>
-                                                <li><a href="products.html">Shoes</a></li>
-                                                <li><a href="products.html">Watches</a></li>
-                                                <li><a href="products.html">Accessories</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="products.html">Clothing</a></li>
-                                                <li><a href="products.html">Wallets,Bags</a></li>
-                                                <li><a href="products.html">Footwear</a></li>
-                                                <li><a href="products.html">Watches</a></li>
-                                                <li><a href="products.html">Accessories</a></li>
-                                                <li><a href="products.html">Jewellery</a></li>
-                                                <li><a href="products.html">Beauty & Grooming</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="products.html">Kids Home Fashion</a></li>
-                                                <li><a href="products.html">Boy's Clothing</a></li>
-                                                <li><a href="products.html">Girl's Clothing</a></li>
-                                                <li><a href="products.html">Shoes</a></li>
-                                                <li><a href="products.html">Brand Stores</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-family: 'yekan', sans-serif">مقالات <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column columns-3">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="furniture.html">Cookware</a></li>
-                                                <li><a href="furniture.html">Sofas</a></li>
-                                                <li><a href="furniture.html">Dining Tables</a></li>
-                                                <li><a href="furniture.html">Shoe Racks</a></li>
-                                                <li><a href="furniture.html">Home Decor</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="furniture.html">Carpets</a></li>
-                                                <li><a href="furniture.html">Tables</a></li>
-                                                <li><a href="furniture.html">Sofas</a></li>
-                                                <li><a href="furniture.html">Shoe Racks</a></li>
-                                                <li><a href="furniture.html">Sockets</a></li>
-                                                <li><a href="furniture.html">Electrical Machines</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="multi-column-dropdown">
-                                                <li><a href="furniture.html">Toys</a></li>
-                                                <li><a href="furniture.html">Wall Clock</a></li>
-                                                <li><a href="furniture.html">Lighting</a></li>
-                                                <li><a href="furniture.html">Top Brands</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="clearfix"></div>
-                                    </div>
+                                <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;font-family: 'yekan', sans-serif">دسته بندی ها <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column">
+                                                <?php
+                                                $cats = \App\Category::all();
+                                                foreach ($cats as $cat) {
+                                                ?>
+                                                <li><a style="font-family: 'yekan', sans-serif" href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
+                                                <?php
+                                                }
+                                                ?>
                                 </ul>
                             </li>
                             <li><a style="font-family: yekan" href="{{url(route('contact'))}}">تماس با ما</a></li>
                         </ul>
                     </div>
                 </nav>
+                <div class="display-search" style="border-radius: 2px;padding:10px;background-color: #f9f9f9;width:600px;height: auto;position:absolute;right:auto;z-index: 100;margin-top: 60px">
+
+                </div>
             </div>
-            <div class="logo-nav-right">
+
+            <div class="logo-nav-right" >
                 <div class="search-box">
                     <div id="sb-search" class="sb-search">
                         <form>
-                            <input style="direction: rtl" class="sb-search-input" placeholder="عبارت مورد نظر خود را از اینجا جستجو کنید ..." type="search" id="search">
+                            <input style="direction: rtl" class="sb-search-input tol" placeholder="عبارت مورد نظر خود را از اینجا جستجو کنید ..." type="search" id="search">
                             <input class="sb-search-submit"  type="submit" value="">
                             <span class="sb-icon-search" style="color: #f0004c"> </span>
                         </form>

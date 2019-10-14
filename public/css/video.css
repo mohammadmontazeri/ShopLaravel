@@ -247,7 +247,7 @@
 }
 
 .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected {
-  background-color: #2483d5
+  background-color: #cf234f;
 }
 
 .video-js .vjs-big-play-button {
@@ -260,11 +260,13 @@
 }
 
 .video-js:hover .vjs-big-play-button,.video-js .vjs-big-play-button:focus,.video-js .vjs-big-play-button:active {
-  background-color: rgba(36,131,213,0.9)
+  background-color: #cf234f;
+  opacity: .9;
 }
 
 .video-js .vjs-loading-spinner {
-  border-color: rgba(36,131,213,0.8)
+  border-color: #cf234f;
+  opacity: .8;
 }
 
 .video-js .vjs-control-bar2 {
@@ -278,5 +280,5 @@
 }
 
 .video-js .vjs-play-progress,.video-js  .vjs-volume-level {
-  background-color: #2483d5
+  background-color: #cf234f;
 }

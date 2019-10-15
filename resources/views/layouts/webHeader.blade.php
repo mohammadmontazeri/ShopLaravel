@@ -48,6 +48,165 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         body{
             font-family: 'yekan', sans-serif !important;
         }
+        .header-top{
+            width: 100%;
+            height: auto;
+            padding: 7px 0px;
+            box-sizing: border-box;
+            direction: rtl;
+            border-bottom: solid 1px #d0d0d0;
+        }
+        .header-top-logo{
+            width: 25%;
+            height: auto;
+            padding: 8px 0px;
+            display: flex;
+            flex-direction: column;
+        }
+        .header-top-logo a{
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #444;
+        }
+        .header-top-logo a:hover {
+        }
+        .header-top-logo .logo-text{
+            margin-top: 2%;
+            font-size: .7em;
+            color: #a0a0a0;
+        }
+        .header-top-logo a span.logo{
+            color: #cf234f;
+        }
+        .header-top-search{
+            width: 55%;
+            height: auto;
+            padding: 8px 0px;
+            position: relative;
+        }
+        .header-top-search .search-part{
+            width: 100%;
+            height: 60px;
+            position: relative;
+        }
+        .header-top-search .search-part input{
+            width: 100%;
+            height: 40px;
+            border: solid 1px #d0d0d0;
+            border-radius: 2.5px;
+            padding: 3px 10px;
+            font-family: 'yekan', sans-serif;
+            font-size: .8em;
+            background-color: #f9f9f9;
+            color: #5a6268;
+            outline: none;
+            box-shadow: 0 2px 4px 0 rgba(12,18,28,.12);
+        }
+        .header-top-search .search-part .search-icon{
+            height: 40px;
+            position: absolute;
+            left: 2%;
+            top: 10px;
+        }
+        .header-top-search .search-part .search-icon #srch-icon{
+            font-size: 1.1em;
+            color: #cf234f;
+            cursor: pointer;
+        }
+        .header-top-search .search-part .search-icon button{
+            border: none;
+            background: transparent;
+            margin-right: 10px;
+            border-right: solid 1px #d0d0d0;
+            padding-right: 10px;
+        }
+        .header-top-search .search-part .search-icon button i{
+            font-size: 1.3em;
+            color: #a0a0a0;
+        }
+        .header-top-search .display-search{
+            background-color: #e6e6e6;
+            width: 100%;
+            height: 300px;
+            z-index: 100;
+            position: absolute;
+            padding: 10px;
+            border-bottom-left-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+        .header-top-user{
+            width: 20%;
+            height: auto;
+            padding: 15px 0px;
+        }
+        .header-top-user .user-action{
+            float: left;
+        }
+        .header-top-user .user-action .login-item{
+            border-left: solid 1px #a0a0a0;
+            padding-left:12px;
+            font-size: .8em;
+            color: #444
+        }
+        .header-top-user .user-action span{
+            padding-right: 7px;
+        }
+        .header-top-user .user-action span a{
+            background-color: #cf234f;
+            padding: 4px 10px;
+            color: #fff8f8;
+            font-size: .8em;
+            border-radius: 2px
+        }
+        .show-header{
+            display: flex;
+            justify-content: space-between;
+        }
+        .header-bottom{
+            background-color: #f9f9f9;
+            width: 100%;
+            height: auto;
+            box-sizing: border-box;
+            direction: rtl;
+            padding: 10px 0px;
+        }
+        .header-bottom .container .show-header .right-nav ul{
+            display: flex;
+        }
+        .header-bottom .container .show-header .right-nav ul li {
+            margin-left: 20px ;
+        }
+        .header-bottom .container .show-header .right-nav ul li a{
+            font-size: .85em;
+            color: #444;
+        }
+        .header-bottom .container .show-header .right-nav ul li i{
+            font-size: .85em;
+            color: #444;
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        .header-bottom .container .show-header .right-nav ul li .cat-detail{
+            background-color: #fff;
+            z-index: 100;
+            border-radius: 3px;
+            padding: 5px;
+            margin-top: 25px;
+            position: absolute;
+        }
+        .header-bottom .container .show-header .right-nav ul li .cat-detail li a{
+            font-size: .75em;
+        }
+        .header-bottom .container .show-header .right-nav ul li a.main-page{
+            font-weight: bold;
+        }
+        .header-bottom .container .show-header .left-nav span{
+
+        }
+        .header-bottom .container .show-header .left-nav span a{
+            font-size: .85em;
+            color: #444;
+        }
     </style>
     <!-- //animation-effect -->
 </head>
@@ -55,97 +214,68 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!-- header -->
 <div class="header">
-    <div class="container">
-        <div class="header-grid">
-            <div class="header-grid-left animated wow slideInLeft" data-wow-delay=".5s">
-                <ul>
-                    <li><i class="glyphicon glyphicon-envelope" aria-hidden="true" style="color: #f0004c;"></i>Montazeriput95@gmail.com</li>
-                    <li><i class="glyphicon glyphicon-earphone" aria-hidden="true" style="color: #f0004c;"></i>۰۹۱۱۷۱۳۲۲۰۵</li>
-                    |
-                    <?php
-                        if (\Illuminate\Support\Facades\Auth::check()){
-                            ?>
-                    <li><i class="glyphicon glyphicon-log-in" aria-hidden="true" style="color: #31708f"></i><a href="{{url(route('logout'))}}">خروج</a></li>
-                    <li><i class="glyphicon glyphicon-book" aria-hidden="true" style="color: #31708f"></i><a href="register.html">پنل کاربری</a></li>
-
-                <?php
-                        }else{
-                            ?>
-                    <li><i class="glyphicon glyphicon-log-in" aria-hidden="true" style="color: #31708f"></i><a href="{{url(route('UserLogin'))}}">ورود</a></li>
-                    <li><i class="glyphicon glyphicon-book" aria-hidden="true" style="color: #31708f"></i><a href="{{url(route('UserRegister'))}}">ثبت نام</a></li>
-                <?php
-                    }
-                    ?>
-                   </ul>
-                <li><i class="fa fa-circle-notch fa-spin" style="font-size: 1em;color: #cf234f"></i></li>
-                <li><i class="fa fa-circle fa-times-circle" style="cursor: pointer;font-size: 1em;color: #cf234f"></i></li>
-            </div>
-            <div class="header-grid-right animated wow slideInRight" data-wow-delay=".5s">
-
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-        <div class="logo-nav">
-            <div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
-                <h1><a href="{{url(route('home'))}}">Best Store <span style="color: #f0004c">Shop anywhere</span></a></h1>
-            </div>
-            <div class="logo-nav-left1" style="display: flex;flex-direction: column">
-                <nav class="navbar navbar-default">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header nav_2">
-                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="{{url(route('home'))}}" class="act" style="font-family: yekan">صفحه اصلی</a></li>
-                            <!-- Mega Menu -->
-                            <li class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;font-family: 'yekan', sans-serif">دسته بندی ها <b class="caret"></b></a>
-                                <ul class="dropdown-menu multi-column">
-                                                <?php
-                                                $cats = \App\Category::all();
-                                                foreach ($cats as $cat) {
-                                                ?>
-                                                <li><a style="font-family: 'yekan', sans-serif" href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
-                                                <?php
-                                                }
-                                                ?>
-                                </ul>
-                            </li>
-                            <li><a style="font-family: yekan" href="{{url(route('contact'))}}">تماس با ما</a></li>
-                        </ul>
-                    </div>
-                </nav>
-                <div class="display-search" style="border-radius: 2px;padding:10px;background-color: #f9f9f9;width:600px;height: auto;position:absolute;right:auto;z-index: 100;margin-top: 60px">
-
+    <div class="header-top">
+        <div class="container">
+            <div class="show-header">
+                <div class="header-top-logo">
+                    <a href="#">
+                        <span>مجله آموزشی <span class="logo"> کوتیشن </span></span>
+                    </a>
+                    <span class="logo-text">
+                        یادگیری را به شیوه ای متفاوت تجربه کن
+                    </span>
                 </div>
-            </div>
-
-            <div class="logo-nav-right" >
-                <div class="search-box">
-                    <div id="sb-search" class="sb-search">
-                        <form>
-                            <input style="direction: rtl" class="sb-search-input tol" placeholder="عبارت مورد نظر خود را از اینجا جستجو کنید ..." type="search" id="search">
-                            <input class="sb-search-submit"  type="submit" value="">
-                            <span class="sb-icon-search" style="color: #f0004c"> </span>
+                <div class="header-top-search">
+                    <div class="search-part">
+                        <form action="">
+                            <input type="text" placeholder="دنبال چیزی میگردی ؟" class="tol">
+                            <div class="search-icon">
+                                <i id="srch-icon" class="fa fa-circle-notch fa-spin"></i>
+                                <i id="srch-icon" class="fa fa-circle fa-times-circle"></i>
+                                <button><i class="fa fa-search"></i></button>
+                            </div>
                         </form>
                     </div>
-                </div>
-                <!-- search-scripts -->
-                <script src="{{asset('public/js/classie.js')}}"></script>
-                <script src="{{asset('public/js/uisearch.js')}}"></script>
-                <script>
-                    new UISearch( document.getElementById( 'sb-search' ) );
-                </script>
-                <!-- //search-scripts -->
-            </div>
+                    <div class="display-search">
 
-            <div class="clearfix"> </div>
+                    </div>
+                </div>
+                <div class="header-top-user">
+                    <div class="user-action">
+                        <a class="login-item" href="#">ورود</a>
+                        <span>
+                            <a href="#">ثبت نام</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="header-bottom">
+        <div class="container">
+            <div class="show-header">
+                <div class="right-nav">
+                    <ul>
+                        <li><a href="#" class="main-page">صفحه اصلی</a></li>
+                        <li><a href="#">دسته بندی ها</a> <i class="fa fa-angle-down"></i>
+                            <ul class="cat-detail">
+                                <?php
+                                $cats = \App\Category::all();
+                                foreach ($cats as $cat) {
+                                ?>
+                                <li><a style="font-family: 'yekan', sans-serif" href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
+                                <?php
+                                }
+                                ?>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="left-nav">
+                    <span><a href="#">تماس با ما</a></span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

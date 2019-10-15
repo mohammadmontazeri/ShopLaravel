@@ -322,13 +322,13 @@ a.simpleCart_empty {
 /*-- //header --*/
 /*-- banner --*/
 .banner{
-	background:url("../images/slider.jpg") no-repeat 0px 0px;
+	background:linear-gradient(135deg,#283048 20%,#859398 80%);
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	-ms-background-size:cover;
-	min-height:700px;
+	min-height:600px;
 }
 .banner-info h3{
 	font-size:5em;

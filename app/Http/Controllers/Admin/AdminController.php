@@ -107,10 +107,8 @@ class AdminController extends Controller
          $array[0]=DB::table("courses")
             ->join("categories",'categories.id','=','courses.cat_id')
             ->select('courses.*')
-            ->where("courses.detail","like","%$data%")
             ->orWhere("courses.title","like","%$data%")
-            ->orWhere("courses.tag","like","%$data%")
-            ->orWhere("categories.name",'like',"%$data%")
+//            ->orWhere("courses.tag","like","%$data%")
             ->get();
         if (count($array[0]) != 0 ){
             foreach ($array[0] as $key=>$item){
@@ -122,10 +120,7 @@ class AdminController extends Controller
         $array[1]=DB::table("articles")
             ->join("categories",'categories.id','=','articles.cat_id')
             ->select('articles.*')
-            ->where("articles.detail","like","%$data%")
             ->orWhere("articles.title","like","%$data%")
-            ->orWhere("articles.tag","like","%$data%")
-            ->orWhere("categories.name",'like',"%$data%")
             ->get();
         if (count($array[1]) != 0 ){
             foreach ($array[1] as $key=>$item){
@@ -137,9 +132,7 @@ class AdminController extends Controller
         $array[2]=DB::table("videos")
             ->join("courses",'courses.id','=','videos.course_id')
             ->select('videos.*','courses.price as curl')
-            ->where("videos.detail","like","%$data%")
             ->orWhere("videos.title","like","%$data%")
-            ->orWhere("videos.tag","like","%$data%")
             ->get();
         if (count($array[2]) != 0 ){
             foreach ($array[2] as $key=>$item){

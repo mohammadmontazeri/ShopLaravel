@@ -156,6 +156,13 @@
                             }else {
                                 $( ".fa-circle-notch" ).hide();
                                 $('.display-search').hide();
+                                $( ".fa-times-circle" ).show();
+                                $('.fa-times-circle').on('click',function () {
+                                    $('.tol').val('');
+                                    $(this).hide();
+                                    $('.display-search').hide();
+
+                                })
                             }
                         },
                     })

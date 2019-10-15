@@ -132,6 +132,7 @@
                                 }
                                 let str="<ul style='direction: rtl'>";
                                 $.each(data.data, function (key,value) {
+
                                     if ((typeof value.price !== 'undefined')&&(typeof value.course_id === 'undefined')){
                                         str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href='' style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"دوره"+"</span>"+ "</li>";
                                     }

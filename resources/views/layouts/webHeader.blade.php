@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         .header-top-search .search-part{
             width: 100%;
-            height: 60px;
+            height: auto;
             position: relative;
         }
         .header-top-search .search-part input{
@@ -125,14 +125,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             color: #a0a0a0;
         }
         .header-top-search .display-search{
-            background-color: #e6e6e6;
+            background-color: #fbfbfb;
             width: 100%;
-            height: 300px;
+            height: auto;
             z-index: 100;
             position: absolute;
-            padding: 10px;
+            padding: 15px 20px;
             border-bottom-left-radius: 2px;
             border-bottom-right-radius: 2px;
+            border: solid 1px #ddd;
         }
         .header-top-user{
             width: 20%;
@@ -153,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         }
         .header-top-user .user-action span a{
             background-color: #cf234f;
-            padding: 4px 10px;
+            padding: 7px 10px;
             color: #fff8f8;
             font-size: .8em;
             border-radius: 2px
@@ -214,68 +215,71 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <body>
 <!-- header -->
 <div class="header">
-    <div class="header-top">
-        <div class="container">
-            <div class="show-header">
-                <div class="header-top-logo">
-                    <a href="#">
-                        <span>مجله آموزشی <span class="logo"> کوتیشن </span></span>
-                    </a>
-                    <span class="logo-text">
-                        یادگیری را به شیوه ای متفاوت تجربه کن
-                    </span>
+    <div class="container">
+        <div class="logo-nav">
+            <li><i class="fa fa-circle-notch fa-spin" style="font-size: 1em;color: #cf234f"></i></li>
+            <li><i class="fa fa-circle fa-times-circle" style="cursor: pointer;font-size: 1em;color: #cf234f"></i></li>
+            <div class="logo-nav-left animated wow zoomIn" data-wow-delay=".5s">
+                <h1><a href="{{url(route('home'))}}">Best Store <span style="color: #f0004c">Shop anywhere</span></a></h1>
+            </div>
+            <div class="logo-nav-left1" style="display: flex;flex-direction: column">
+                <nav class="navbar navbar-default">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header nav_2">
+                        <button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="{{url(route('home'))}}" class="act" style="font-family: yekan">صفحه اصلی</a></li>
+                            <!-- Mega Menu -->
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;font-family: 'yekan', sans-serif">دسته بندی ها <b class="caret"></b></a>
+                                <ul class="dropdown-menu multi-column">
+                                    <?php
+                                    $cats = \App\Category::all();
+                                    foreach ($cats as $cat) {
+                                    ?>
+                                    <li><a style="font-family: 'yekan', sans-serif" href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
+                                    <?php
+                                    }
+                                    ?>
+                                </ul>
+                            </li>
+                            <li><a style="font-family: yekan" href="{{url(route('contact'))}}">تماس با ما</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="display-search" style="border-radius: 2px;padding:10px;background-color: #f9f9f9;width:600px;height: auto;position:absolute;right:auto;z-index: 100;margin-top: 60px">
+
                 </div>
-                <div class="header-top-search">
-                    <div class="search-part">
-                        <form action="">
-                            <input type="text" placeholder="دنبال چیزی میگردی ؟" class="tol">
-                            <div class="search-icon">
-                                <i id="srch-icon" class="fa fa-circle-notch fa-spin"></i>
-                                <i id="srch-icon" class="fa fa-circle fa-times-circle"></i>
-                                <button><i class="fa fa-search"></i></button>
-                            </div>
+            </div>
+
+            <div class="logo-nav-right" >
+                <div class="search-box">
+                    <div id="sb-search" class="sb-search">
+                        <form>
+                            <input style="direction: rtl" class="sb-search-input tol" placeholder="عبارت مورد نظر خود را از اینجا جستجو کنید ..." type="search" id="search">
+                            <input class="sb-search-submit"  type="submit" value="">
+                            <span class="sb-icon-search" style="color: #f0004c"> </span>
                         </form>
                     </div>
-                    <div class="display-search">
-
-                    </div>
                 </div>
-                <div class="header-top-user">
-                    <div class="user-action">
-                        <a class="login-item" href="#">ورود</a>
-                        <span>
-                            <a href="#">ثبت نام</a>
-                        </span>
-                    </div>
-                </div>
+                <!-- search-scripts -->
+                <script src="{{asset('public/js/classie.js')}}"></script>
+                <script src="{{asset('public/js/uisearch.js')}}"></script>
+                <script>
+                    new UISearch( document.getElementById( 'sb-search' ) );
+                </script>
+                <!-- //search-scripts -->
             </div>
-        </div>
-    </div>
-    <div class="header-bottom">
-        <div class="container">
-            <div class="show-header">
-                <div class="right-nav">
-                    <ul>
-                        <li><a href="#" class="main-page">صفحه اصلی</a></li>
-                        <li><a href="#">دسته بندی ها</a> <i class="fa fa-angle-down"></i>
-                            <ul class="cat-detail">
-                                <?php
-                                $cats = \App\Category::all();
-                                foreach ($cats as $cat) {
-                                ?>
-                                <li><a style="font-family: 'yekan', sans-serif" href="{{url(route('catIndex',['category'=>$cat->id]))}}">{{$cat->name}}</a></li>
-                                <?php
-                                }
-                                ?>
-                            </ul>
-                        </li>
 
-                    </ul>
-                </div>
-                <div class="left-nav">
-                    <span><a href="#">تماس با ما</a></span>
-                </div>
-            </div>
+            <div class="clearfix"> </div>
         </div>
+
     </div>
 </div>

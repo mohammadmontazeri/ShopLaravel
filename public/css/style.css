@@ -322,7 +322,7 @@ a.simpleCart_empty {
 /*-- //header --*/
 /*-- banner --*/
 .banner{
-	background:linear-gradient(135deg,#283048 20%,#859398 80%);
+	background:linear-gradient(135deg,#859398 20%,#283048 80%);
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;

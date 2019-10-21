@@ -41,7 +41,6 @@
                 <div style="direction: rtl" class="col-md-12 single-right-left simpleCart_shelfItem animated wow slideInRight" data-wow-delay=".5s">
                     <div style="padding-top:10px;display: flex;justify-content: space-between">
                         <h3 style="font-family: yekan;font-weight: bolder;color: #595959">{{$video->title}}</h3>
-                        <a class="download" href="#" style=";font-size:0.85em;font-weight: bold;color: #fff;background-color:#3a87ad;padding: 7px 12px;border: solid 1.5px #d0d0d0;border-radius: 3px;"> دانلود <i class="fa fa-download"></i></a>
                     </div>
                     <div class="description">
                         <h5 style="font-family: yekan;font-weight: bold">توضیحات</h5>
@@ -80,6 +79,9 @@
                                                 <a href="{{url(route('videoDetail',['video'=>$video->id]))}}" style="font-size: .85em;color: #5a6268;font-weight: bold" >{{$video->title}}</a>
                                             </div>
                                             <div class="left-item">
+                                                @if($video->price == "رایگان")
+                                                <a class="download" href="#" style="margin-left: 5px;color: #5a6268"><i class="fa fa-download"></i></a>
+                                                @endif
                                                 <span style="font-size: .9em;color: #f0004c;">{{$video->time}}</span>
                                             </div>
                                         </div>

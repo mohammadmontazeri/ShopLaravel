@@ -49,6 +49,8 @@ class CourseController extends AdminController
         //  return $request;die;
         if (!empty($request->price)){
             $price = $request->price;
+        }else{
+            $price = 'رایگان';
         }
         $imgUrl = $this->imageuploader($request->image);
         Course::create([

@@ -44,6 +44,7 @@ Route::prefix('admin')->middleware('auth')->group(function (){
     })->name('videoDetail');
     Route::resource('/newsletter','NewsletterController');
     Route::resource('/contact','ContactController');
+    Route::resource('/payment','Admin\PaymentController');
     Route::resource('/comment','Admin\CommentController');
     Route::get('reply/{comment}','Admin\CommentController@reply')->name('replyComment');
     Route::post('reply/{comment}','Admin\CommentController@replyPost')->name('replyCommentPost');
@@ -92,4 +93,6 @@ Route::get('/category/{category}',function (\App\Category $category){
 })->name('catIndex');
 //
 Route::get('search','Admin\AdminController@search')->name('search_ajax');
+Route::get('search-post','Admin\AdminController@search_post')->name('search-post');
+//
 

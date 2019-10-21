@@ -168,6 +168,9 @@ desired effect
                         <a href="{{url(route('newsletter.index'))}}"><i class="fa fa-circle"></i> <span>خبرنامه</span></a>
                     </li>
                     <li>
+                        <a href="{{url(route('payment.index'))}}"><i class="fa fa-circle"></i> <span>پرداخت ها</span></a>
+                    </li>
+                    <li>
                         <a href="{{url(route('contact.index'))}}"><i class="fa fa-circle"></i> <span>تماس با ما</span></a>
                     </li>
                     <li>
@@ -299,68 +302,6 @@ desired effect
                         });
                     }
                 });
-           /* Swal({
-                    title: "Are you sure?",
-                    text: "You will not be able to recover this imaginary file!",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#DD6B55",
-                    confirmButtonText: "Yes, delete it!",
-                    closeOnConfirm: false
-                },
-                function(isConfirm){
-                    if (isConfirm) {
-                        $.ajax({
-                            url     : "#",
-                            method  : 'POST',
-                            data    : {
-                                delete_id  :delete_id,
-                                delete_type : delete_type,
-                            },
-                            headers:
-                                {
-                                    'X-CSRF-TOKEN': token
-                                },
-                            success: function () {
-                                swal("Done!","It was succesfully deleted!","success");
-                            }
-                        });
-                    }else{
-                        Swal("Cancelled", "Your imaginary file is safe :)", "error");
-                    }
-                })*/
-
-           /* Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.value) {
-                    $.ajax({
-                        url     : "#",
-                        method  : 'POST',
-                        data    : {
-                            delete_id  :delete_id,
-                            delete_type : delete_type,
-                        },
-                        headers:
-                            {
-                                'X-CSRF-TOKEN': token
-                            },
-                        success : function(){
-                            Swal.fire(
-                                'Deleted!',
-                                'Your file has been deleted.',
-                                'success'
-                            )
-
-                        }
-                    });
-                }*/
             });
         $('.download').on('change',function () {
             let value = $(this).val();

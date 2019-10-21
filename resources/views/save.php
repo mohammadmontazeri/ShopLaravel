@@ -29,7 +29,7 @@ class AdminController extends Controller
 
     public function ajax(Request $request)
     {
-       /* */
+        /* */
         switch ($request->delete_type){
 
             case 'category':
@@ -76,7 +76,7 @@ class AdminController extends Controller
             case 'comment':
                 $comment = Comment::where('id',$request->delete_id)->get()->first();
                 if ($comment->is_parent == '1'){
-                        return response()->json('کامنت مورد نظر دارای زیر پاسخ می باشد');
+                    return response()->json('کامنت مورد نظر دارای زیر پاسخ می باشد');
                 }else{
                     $parent = $comment->parent;
                     $comment->delete();
@@ -99,13 +99,13 @@ class AdminController extends Controller
         $course = DB::table('courses')->where('id','=',$id)->get();
         $videos = DB::table('videos')->where('course_id','=',$course[0]->id)->get();
         //return $videos;
-       return response()->json(['data'=>$videos]);
+        return response()->json(['data'=>$videos]);
     }
     public function search(Request $request)
     {
         //return $request->value;
         $data = $request->value;
-         $array[0]=DB::table("courses")
+        $array[0]=DB::table("courses")
             ->join("categories",'categories.id','=','courses.cat_id')
             ->select('courses.*')
             ->orWhere("courses.title","like","%$data%")
@@ -140,7 +140,7 @@ class AdminController extends Controller
                 $video[$key] = $item ;
             }
         }else{
-           $video = [];
+            $video = [];
         }
         $res = array_merge($course,$article,$video);
         if (count($res) == 0){
@@ -151,44 +151,65 @@ class AdminController extends Controller
     }
     public function search_post(Request $request)
     {
-
-        if (empty($request->text)){
-            $query = "هیچ";
-            return view('search.index',['msg'=>'موردی یافت نشد','ar_num'=>0,'co_num'=>0,'vid_num'=>0,'query'=>$query]);
+        /* if ($request->text==null&&empty($request->page)){
+             $msg = "برای جستجو موردی را وارد کنید";
+             return view('post.search',compact('msg'));
+         }*/
+        if (!empty($request->text)){
+            Session::forget('data');
+            Session::put('data',$request->text);
         }
-        $course_ =DB::table("courses")
+        //
+        $courses=DB::table("courses")
             ->join("categories",'categories.id','=','courses.cat_id')
             ->select('courses.*')
-            ->orWhere("courses.title","like","%".$request->text."%");
-        $courses=$course_->paginate(2);
-        $course_num =$course_->count();
-            ////
-        $video_ = DB::table("videos")
+            ->orWhere("courses.title","like","%".session('data')."%")
+            ->paginate(2);
+        $course_num = count(DB::table("courses")
+            ->join("categories",'categories.id','=','courses.cat_id')
+            ->select('courses.*')
+            ->orWhere("courses.title","like","%".session('data')."%")
+            ->get());
+        ////
+        $videos=DB::table("videos")
             ->join("courses",'courses.id','=','videos.course_id')
             ->select('videos.*','courses.price as curl')
-            ->orWhere("videos.title","like","%".$request->text."%");
-        $videos=$video_->paginate(2);
-        $video_num = $course_->count();
-            ////
-        $article_ = DB::table("articles")
+            ->orWhere("videos.title","like","%".session('data')."%")
+            ->paginate(2);
+        $video_num = count(DB::table("videos")
+            ->join("courses",'courses.id','=','videos.course_id')
+            ->select('videos.*','courses.price as curl')
+            ->orWhere("videos.title","like","%".session('data')."%")
+            ->get());
+        ////
+        $articles = DB::table("articles")
             ->join("categories",'categories.id','=','articles.cat_id')
             ->select('articles.*')
-            ->orWhere("articles.title","like","%".$request->text."%");
-        $articles = $article_->paginate(2);
-        $article_num = $article_->count();
-        if ($article_num == 0 && $course_num == 0 && $video_num == 0){
-            $query = $request->text;
-            return view('search.index',['msg'=>'موردی یافت نشد','ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num,'query'=>$query]);
+            ->orWhere("articles.title","like","%".session('data')."%")
+            ->paginate(2);
+        $article_num = count(DB::table("articles")
+            ->join("categories",'categories.id','=','articles.cat_id')
+            ->select('articles.*')
+            ->orWhere("articles.title","like","%".session('data')."%")
+            ->get());
+        ////
+        //return session('type');
+        if ($request->type == "article"){
+            Session::forget('type');
         }
-            ////
-
-        if ($request->type == "course"){
-            return view('search.index',['courses'=>$courses,'query'=>$request->text,'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
+        if (($request->type == "course")||(session('type')=="course")){
+            //Session::forget('type');
+            if (empty(session('type'))){
+                Session::put('type',$request->type);
+            }
+            return view('search.index',['courses'=>$courses,'query'=>session('data'),'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
         }
-        elseif($request->type == "video"){
-            return view('search.index',['videos'=>$videos,'query'=>$request->text,'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
+        elseif(($request->type == "video")||session('type')=="video"){
+            Session::forget('type');
+            Session::put('type',$request->type);
+            return view('search.index',['videos'=>$videos,'query'=>session('data'),'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
         }
-        return view('search.index',['articles'=>$articles,'query'=>$request->text,'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
+        return view('search.index',['articles'=>$articles,'query'=>session('data'),'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
     }
 
 }

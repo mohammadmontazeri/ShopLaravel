@@ -116,7 +116,7 @@
                         $('.tol,.display-search').blur(function () {
                             setTimeout(function () {
                                 $('.display-search').hide();
-                            },50)
+                            },1000)
                         })
                         $('.tol').focus(function () {
                             let value = $('.tol').val();

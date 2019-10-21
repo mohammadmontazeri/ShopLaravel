@@ -138,13 +138,13 @@
                                     let str="<ul style='direction: rtl'>";
                                     $.each(data.data, function (key,value) {
                                         if ((typeof value.price !== 'undefined')&&(typeof value.course_id === 'undefined')){
-                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"http://localhost:8888/shoplaravel/course/"+value.id+" style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"دوره"+"</span>"+ "</li>";
+                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"{{url('course')}}/"+value.id+" style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"دوره"+"</span>"+ "</li>";
                                         }
                                         if (typeof value.price === 'undefined'){
-                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"http://localhost:8888/shoplaravel/article/"+value.id+" style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"مقاله"+"</span>"+ "</li>";
+                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"{{url('article')}}/"+value.id+" style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"مقاله"+"</span>"+ "</li>";
                                         }
                                         if ((typeof value.price !== 'undefined')&&(typeof value.course_id !== 'undefined')){
-                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"http://localhost:8888/shoplaravel/episode/"+value.id+" style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"ویدیوها"+"</span>"+ "</li>";
+                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"{{url('episode')}}"+value.id+" style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"ویدیوها"+"</span>"+ "</li>";
                                         }
                                     });
                                     $('.display-search').show();

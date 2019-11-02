@@ -10,8 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
+Route::get('redirect-upload',function (){
+  return "شما به این بخش دسترسی ندارید";
+});
 //Auth::routes();
 Route::prefix('admin')->group(function (){
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -53,14 +54,16 @@ Route::prefix('admin')->middleware('auth')->group(function (){
 });
 Route::post('/ajax-delete','Admin\AdminController@ajax')->name('ajax');
 //=============================End Admin Route & Start User Route===============================================//
-Route::get('/',function (){
-    return view('home');
+Route::get('/',function (\Illuminate\Http\Request $request){
+    return view('home',compact('request'));
 })->name('home');
-Route::get('login',function (){
+Route::get('login',function (\Illuminate\Http\Request $request){
+    \Illuminate\Support\Facades\Session::put('url',$request->url);
     return view('login');
 })->name('UserLogin');
 Route::post('login','Auth\LoginController@authenticate')->name('LoginPostUser');
-Route::get('register',function (){
+Route::get('register',function (\Illuminate\Http\Request $request){
+    \Illuminate\Support\Facades\Session::put('url',$request->url);
     return view('register');
 })->name('UserRegister');
 Route::post('/newsletter/store','NewsletterController@store')->name('newsletterStore');
@@ -95,4 +98,17 @@ Route::get('/category/{category}',function (\App\Category $category){
 Route::get('search','Admin\AdminController@search')->name('search_ajax');
 Route::get('search-post','Admin\AdminController@search_post')->name('search-post');
 //
+Route::get('all-course','CourseController@index')->name('allCourse');
+Route::get('all-article',function (){
+    $articles = \App\Article::latest()->paginate(4);
+    return view('article.allArticle',compact('articles'));
+})->name('allArticle');
+//
+Route::get('/receipt/{pay}',function (\App\Payment $pay){
+   return view('receipt',compact('pay'));
+})->name('receipt');
+Route::get('download-course','Admin\AdminController@download');
 
+Route::get('test',function (){
+    \Illuminate\Support\Facades\Mail::to('example@gmail.com','M++')->send(new \App\Mail\AuthUser('12'));
+});

@@ -9,6 +9,7 @@ use App\Contact;
 use App\Course;
 use App\Like;
 use App\Newsletter;
+use App\Payment;
 use App\Tag;
 use App\User;
 use App\Video;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
@@ -26,7 +28,12 @@ class AdminController extends Controller
         $file->move($path,$filename);
         return "/uploads/".$filename;
     }
-
+    public function videouploader($file){
+        $filename=time()."_".$file->getClientOriginalName();
+        $path=public_path('/uploads/videos/');
+        $file->move($path,$filename);
+        return "/uploads/videos/".$filename;
+    }
     public function ajax(Request $request)
     {
        /* */
@@ -109,6 +116,7 @@ class AdminController extends Controller
             ->join("categories",'categories.id','=','courses.cat_id')
             ->select('courses.*')
             ->orWhere("courses.title","like","%$data%")
+            ->orWhere("courses.tag","like","%$data%")
 //            ->orWhere("courses.tag","like","%$data%")
             ->get();
         if (count($array[0]) != 0 ){
@@ -122,6 +130,7 @@ class AdminController extends Controller
             ->join("categories",'categories.id','=','articles.cat_id')
             ->select('articles.*')
             ->orWhere("articles.title","like","%$data%")
+            ->orWhere("articles.tag","like","%$data%")
             ->get();
         if (count($array[1]) != 0 ){
             foreach ($array[1] as $key=>$item){
@@ -134,6 +143,7 @@ class AdminController extends Controller
             ->join("courses",'courses.id','=','videos.course_id')
             ->select('videos.*','courses.price as curl')
             ->orWhere("videos.title","like","%$data%")
+            ->orWhere("videos.tag","like","%$data%")
             ->get();
         if (count($array[2]) != 0 ){
             foreach ($array[2] as $key=>$item){
@@ -159,21 +169,24 @@ class AdminController extends Controller
         $course_ =DB::table("courses")
             ->join("categories",'categories.id','=','courses.cat_id')
             ->select('courses.*')
-            ->orWhere("courses.title","like","%".$request->text."%");
+            ->orWhere("courses.title","like","%".$request->text."%")
+            ->orWhere("courses.tag","like","%".$request->text."%");
         $courses=$course_->paginate(2);
         $course_num =$course_->count();
             ////
         $video_ = DB::table("videos")
             ->join("courses",'courses.id','=','videos.course_id')
             ->select('videos.*','courses.price as curl')
-            ->orWhere("videos.title","like","%".$request->text."%");
+            ->orWhere("videos.title","like","%".$request->text."%")
+            ->orWhere("videos.tag","like","%".$request->text."%");
         $videos=$video_->paginate(2);
         $video_num = $course_->count();
             ////
         $article_ = DB::table("articles")
             ->join("categories",'categories.id','=','articles.cat_id')
             ->select('articles.*')
-            ->orWhere("articles.title","like","%".$request->text."%");
+            ->orWhere("articles.title","like","%".$request->text."%")
+            ->orWhere("articles.tag","like","%".$request->text."%");
         $articles = $article_->paginate(2);
         $article_num = $article_->count();
         if ($article_num == 0 && $course_num == 0 && $video_num == 0){
@@ -189,6 +202,28 @@ class AdminController extends Controller
             return view('search.index',['videos'=>$videos,'query'=>$request->text,'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
         }
         return view('search.index',['articles'=>$articles,'query'=>$request->text,'ar_num'=>$article_num,'co_num'=>$course_num,'vid_num'=>$video_num]);
+    }
+
+    public function download(Request $request)
+    {
+        $res = explode('_',$request->q);
+        $ci = ($res[1]+2)/21 ;
+        $vi = ($res[0]+5)/228 ;
+        if (Auth::check()){
+            $video = Video::where('id',$vi)->get()->first();
+            if ($video->price == "رایگان"){
+                return Response::download("public$video->url");
+            }else{
+                $pay = Payment::where('user_id',\auth()->user()->id)->where('course_id',$ci)->get()->first();
+                if (!empty($pay)){
+                    return Response::download("public$video->url");
+                }else{
+                    return "شما دوره را خریداری نکرده اید!";
+                }
+            }
+        }else{
+            return redirect(route('UserLogin'));
+        }
     }
 
 }

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\AuthUser;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -46,7 +49,7 @@ class RegisterController extends Controller
     {
         //return $request;
         $this->validator($request->all())->validate();
-
+        Mail::to($request->email)->send(new AuthUser($request->email));
         event(new Registered($user = $this->create($request->all())));
 
        // $this->guard()->login($user);
@@ -55,10 +58,11 @@ class RegisterController extends Controller
             return redirect('/admin/register')->with('msg',$msg);
         }else{
             $msg = "ثبت نام شما با موفقیت انجام شد" ;
-            return back()->with('msg',$msg);
+            $url = session('url');
+            Session::forget('url');
+            return redirect($url);
         }
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+       // return $this->registered($request, $user) ?: redirect($this->redirectPath());
     }
 
     /**

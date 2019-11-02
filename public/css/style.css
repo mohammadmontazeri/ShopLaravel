@@ -10,6 +10,13 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     url('../fonts/iranyekanwebregular.woff') format('woff'),
     url('../fonts/iranyekanwebregular.ttf') format('truetype');
 }
+@font-face{
+    font-family: 'awesome';
+    src: url("../fonts/fontawesome-webfont.woff") format('woff');
+}
+body i {
+    font-family: 'awesome' !important;
+}
 html, body{
     font-size: 100%;
 	background:	#fff;

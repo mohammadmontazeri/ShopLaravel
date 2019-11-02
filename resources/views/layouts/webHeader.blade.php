@@ -215,6 +215,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <body>
 <!-- header -->
+<?php
+if (isset($request)){
+    if ($request->q == "ok"){
+        $user = \App\User::where('email',$request->email)->get()->first();
+        //dd($user);
+        $user->update([
+            'status'=> '1'
+        ]);
+        \Illuminate\Support\Facades\Auth::loginUsingId($user->id);
+    }
+}
+?>
 <div class="header">
     <div class="header-top">
         <div class="container">
@@ -250,9 +262,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             <a href="{{url(route('logout'))}}">خروج</a>
                         </span>
                             @else
-                            <a class="login-item" href="{{url(route('UserLogin'))}}">ورود</a>
+                            <a class="login-item" href="{{url(route('UserLogin',['url'=>url()->current()]))}}">ورود</a>
                             <span>
-                            <a href="{{url(route('UserRegister'))}}">ثبت نام</a>
+                            <a href="{{url(route('UserRegister',['url'=>url()->current()]))}}">ثبت نام</a>
                         </span>
                         @endif
                     </div>
@@ -266,6 +278,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="right-nav">
                     <ul>
                         <li><a href="{{url(route('home'))}}" class="main-page">صفحه اصلی</a></li>
+                        <li><a href="{{url(route('allCourse'))}}">دوره ها</a></li>
+                        <li><a href="{{url(route('allArticle'))}}">مقالات</a></li>
                         <li><a href="#">دسته بندی ها</a> <i class="fa fa-angle-down"></i>
                             <ul class="cat-detail">
                                 <?php

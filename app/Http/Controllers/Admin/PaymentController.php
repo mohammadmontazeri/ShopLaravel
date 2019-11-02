@@ -45,7 +45,8 @@ class PaymentController extends AdminController
             'user_id' => $request->user_id,
             'authority' =>''
         ]);
-        return back();
+        $pay = Payment::where('course_id',$request->course_id)->get()->first();
+        return redirect(route('receipt',['pay'=>$pay]));
     }
 
     /**

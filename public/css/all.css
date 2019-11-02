@@ -2,6 +2,13 @@
  * Font Awesome Free 5.11.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
+@font-face{
+  font-family: 'awesome';
+  src: url("../fonts/fontawesome-webfont.woff") format('woff');
+}
+body i {
+  font-family: 'awesome' !important;
+}
 .fa,
 .fas,
 .far,

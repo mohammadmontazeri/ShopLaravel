@@ -91,7 +91,12 @@
                                                 </p>
                                                 <div class="new-collections-grid1-left simpleCart_shelfItem" style="display: flex;justify-content: space-between">
                                                     <span style="font-weight: bold;font-size: 0.85em;padding: 5px 8px;" > <i style="color: #bbb" class="fa fa-eye"></i><span style="color: #999"> {{$article->viewed}} </span></span>
-                                                    <span style="direction:rtl;color: #fff;border-radius:2px;font-weight: bold;background-color: #595959;padding: 5px 8px;box-sizing: border-box;font-size: 0.9em;">{{$article->price}}</span>
+                                                    <span style="direction:rtl;color: #fff;border-radius:2px;font-weight: bold;background-color: #595959;padding: 5px 8px;box-sizing: border-box;font-size: 0.9em;">
+                                                        <?php
+                                                        echo \App\Category::where('id',$article->cat_id)->get()->first()->name;
+
+                                                        ?>
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>

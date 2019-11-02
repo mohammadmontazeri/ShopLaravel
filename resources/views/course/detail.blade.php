@@ -19,9 +19,20 @@
                 <div style="background-color: #cf294f;width: 100%;height: auto;text-align: center;border-radius: 2.5px">
                    @if($course->price != 'رایگان')
                         @if(\Illuminate\Support\Facades\Auth::check())
-                            <a href="#" style="display: block;font-size: 1.1em;color: white;padding: 20px 20px" data-toggle="modal" data-target="#exampleModal">پرداخت هزینه برای شرکت در دوره</a>
+                            <?php
+                                $user = \App\Payment::where('user_id',auth()->user()->id)->where('course_id',$course->id)->get()->first();
+                                if (empty($user)){
+                                    ?>
+                                <a style="display: block;cursor: pointer;font-size: 1.1em;color: white;padding: 20px 20px" data-toggle="modal" data-target="#exampleModal">پرداخت هزینه برای شرکت در دوره</a>
+<?php
+                                }else{
+                                    ?>
+                                <a style="display: block;font-size: 1.1em;color: white;padding: 20px 20px">شما در این دوره ثبت نام کرده اید</a>
+<?php
+                                }
+                            ?>
                         @else
-                            <a href="{{url(route('UserLogin'))}}" style="display: block;font-size: .9em;color: white;padding: 20px 20px">برای شرکت در این دوره ابتدا باید وارد سایت شوید</a>
+                            <a href="{{url(route('UserLogin',['url'=>url()->current()]))}}" style="display: block;font-size: .9em;color: white;padding: 20px 20px">برای شرکت در این دوره ابتدا باید وارد سایت شوید</a>
                         @endif
                    @endif
                 </div>
@@ -121,8 +132,22 @@
                                                 <a href="{{url(route('videoDetail',['video'=>$video->id]))}}" style="font-size: .85em;color: #5a6268;font-weight: bold" >{{$video->title}}</a>
                                             </div>
                                             <div class="left-item">
+                                                @if(\Illuminate\Support\Facades\Auth::check())
+                                                    <?php
+                                                    $user = \App\Payment::where('user_id',auth()->user()->id)->where('course_id',$course->id)->get()->first();
+                                                    if (!empty($user)){
+                                                    ?>
+                                                    <a class="download" href="{{$video->download_link()}}" style="margin-left: 5px;color: #5a6268"><i class="fa fa-download"></i></a>
+                                                    <?php
+                                                    }elseif($video->price == "رایگان"){
+                                                    ?>
+                                                    <a class="download" href="{{$video->download_link()}}" style="margin-left: 5px;color: #5a6268"><i class="fa fa-download"></i></a>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                @endif
                                                 @if($video->price == "رایگان")
-                                                    <a class="download" href="#" style="margin-left: 5px;color: #5a6268"><i class="fa fa-download"></i></a>
+                                                    <span>رایگان</span>
                                                 @endif
                                                 <span style="font-size: .9em;color: #f0004c;">{{$video->time}}</span>
                                             </div>

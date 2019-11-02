@@ -52,8 +52,10 @@ class VideoController extends AdminController
         //  return $request;die;
         if (!empty($request->price)){
             $price = $request->price;
+        }else{
+            $price = "";
         }
-        $videoUrl = $this->imageuploader($request->url);
+        $videoUrl = $this->videouploader($request->url);
         Video::create([
             'title' => $request->title,
             'summery' => $request->summery,

@@ -29,9 +29,6 @@
             </div>
             <div class="clearfix"> </div>
         </div>
-        <div class="footer-logo animated wow slideInUp" data-wow-delay=".5s">
-            <h2><a href="index.html">Best Store <span style="color: #f0004c">shop anywhere</span></a></h2>
-        </div>
         <div class="copy-right animated wow slideInUp" data-wow-delay=".5s">
             <p>طراحی و توسعه توسط <span style="color: #f0004c">محمد منتظری</span></p>
         </div>
@@ -116,7 +113,7 @@
                         $('.tol,.display-search').blur(function () {
                             setTimeout(function () {
                                 $('.display-search').hide();
-                            },1000)
+                            },500)
                         })
                         $('.tol').focus(function () {
                             let value = $('.tol').val();
@@ -144,7 +141,7 @@
                                             str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"{{url('article')}}/"+value.id+" target = '_blank' style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"مقاله"+"</span>"+ "</li>";
                                         }
                                         if ((typeof value.price !== 'undefined')&&(typeof value.course_id !== 'undefined')){
-                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"{{url('episode')}}"+value.id+" target = '_blank' style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"ویدیوها"+"</span>"+ "</li>";
+                                            str += "<li style='border-bottom: solid 1px #e0e0e0;padding: 3px 0px;display: flex;justify-content: space-between'>" +"<a href="+"{{url('episode')}}/"+value.id+" target = '_blank' style='font-family: yekan;font-size: .85em'>"+value.title+"</a>" +"<span style='padding: 3px 7px;background-color: #cf234f;color: #fff;border-radius: 2px;font-size: .7em; '>"+"ویدیوها"+"</span>"+ "</li>";
                                         }
                                     });
                                     $('.display-search').show();

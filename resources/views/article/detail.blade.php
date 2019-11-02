@@ -34,7 +34,6 @@
                 <div style="direction: rtl" class="col-md-12 single-right-left simpleCart_shelfItem animated wow slideInRight" data-wow-delay=".5s">
                     <div style="padding-top:10px;display: flex;justify-content: space-between">
                         <h3 style="font-family: yekan;font-weight: bolder;color: #595959">{{$article->title}}</h3>
-                        <span style=";font-size:0.9em;font-weight: bold;color: #f0004c;  font-family: yekan;padding: 7px 12px;border: solid 1px #ddd;border-radius: 2px;">{{$article->price}}</span>
                     </div>
                     <div class="description">
                         <h5 style="font-family: yekan;font-weight: bold">توضیحات</h5>
@@ -256,7 +255,11 @@
                             </p>
                             <div class="new-collections-grid1-left simpleCart_shelfItem" style="display: flex;justify-content: space-between">
                                 <span style="font-weight: bold;font-size: 0.85em;padding: 5px 8px;" > <i style="color: #bbb" class="fa fa-eye"></i><span style="color: #999"> {{$article->viewed}} </span></span>
-                                <span style="direction:rtl;color: #fff;border-radius:2px;font-weight: bold;background-color: #595959;padding: 5px 8px;box-sizing: border-box;font-size: 0.9em;">{{$article->price}}</span>
+                                <span style="direction:rtl;color: #fff;border-radius:2px;font-weight: bold;background-color: #595959;padding: 5px 8px;box-sizing: border-box;font-size: 0.9em;">
+                                    <?php
+                                        echo \App\Category::where('id',$article->cat_id)->get()->first()->name;
+                                    ?>
+                                </span>
                             </div>
                         </div>
                     </div>

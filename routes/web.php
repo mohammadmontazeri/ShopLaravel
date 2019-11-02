@@ -108,7 +108,3 @@ Route::get('/receipt/{pay}',function (\App\Payment $pay){
    return view('receipt',compact('pay'));
 })->name('receipt');
 Route::get('download-course','Admin\AdminController@download');
-
-Route::get('test',function (){
-    \Illuminate\Support\Facades\Mail::to('example@gmail.com','M++')->send(new \App\Mail\AuthUser('12'));
-});

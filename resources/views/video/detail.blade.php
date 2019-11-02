@@ -38,6 +38,40 @@
                         @endif
                     @endif
                 </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content" style="background-color: white !important;height: 300px !important">
+                            <div style="background-color: #5a6268;padding: 10px 5px !important;height: 50px;direction: rtl">
+                                <button style="" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" ><i style="color: white !important;" class="fa fa-times-circle"></i></span>
+                                </button>
+                                <span style="color: #fff;font-size: .9em;font-weight: bold;margin-right: 35%">خرید : <span>{{$course->title}}</span></span>
+                            </div>
+                            <form action="{{route('payment.store')}}" method="post">
+                                @csrf
+                                <div style="height: 120px;padding: 40px 30px">
+                                    <div style="padding: 5px 10px;display: flex;direction: rtl;justify-content: space-between;border: solid 1px #d0d0d0;border-radius: 2px">
+                                        <span style="font-size: .9em;padding:5px 7px;font-weight: bold ">مبلغ پرداختی</span>
+                                        <span style="padding: 5px 7px;color: #4cae4c;border-radius: 2px;font-weight: bold">{{$course->price}}</span>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="course_id" value="{{$course->id}}">
+                                @if(\Illuminate\Support\Facades\Auth::check())
+                                    <input type="hidden" name="user_id" value="{{\Illuminate\Support\Facades\Auth::user()->id}}">
+                                @endif
+                                <div style="height: 80px;direction: rtl;text-align: center;padding: 15px;border-top:solid 1px #e0e0e0;width: 98%;margin: auto ">
+                                    <button name="btn" style="color: white;border: solid 1px #d0d0d0;width: 97%;padding: 15px 0px;border-radius: 3px;background-color: #cf234f;font-size: .9em">
+                                        خرید از درگاه
+                                    </button>
+                                </div>
+                            </form>
+                            <div style="background-color: #14648f;height: 50px;padding: 7px;text-align: center">
+                                <span style="font-size: .75em;color: #fff;">با پرداخت وجه از درگاه پرداخت معتبر از خرید خود اطمینان حاصل کنید</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="categories animated wow slideInUp" data-wow-delay=".5s">
                     <h4 style="font-family: yekan;font-weight: bolder;text-align: center;padding: 20px 0px;background-color: #eee">دسته بندی ها</h4>
                     <ul class="cate" style="direction: rtl">
